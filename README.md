@@ -27,6 +27,14 @@ Este repositorio está diseñado como punto de partida para aplicaciones moderna
 - **Vite**: Herramienta de desarrollo y build ultrarrápida para proyectos modernos.
 - **TypeScript**: Tipado estático para mayor robustez y mantenibilidad.
 
+## Crear un nuevo proyecto
+
+Para crear un nuevo repositorio basado en este template, ejecuta el siguiente comando:
+
+```bash
+git clone https://github.com/cuevacelis/template-tanstack nuevo-proyecto
+```
+
 ## Cómo empezar
 
 1. Clona este repositorio.
@@ -41,14 +49,6 @@ Este repositorio está diseñado como punto de partida para aplicaciones moderna
 - `npm run test`: Ejecuta las pruebas.
 - `npm run lint`: Analiza el código en busca de errores de estilo.
 - `npm run format`: Formatea el código automáticamente.
-
-## Crear un nuevo proyecto
-
-Para crear un nuevo repositorio basado en este template, ejecuta el siguiente comando:
-
-```bash
-git clone https://github.com/cuevacelis/template-tanstack nuevo-proyecto
-```
 
 ## Licencia
 
