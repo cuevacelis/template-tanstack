@@ -1,0 +1,21 @@
+{
+  "projectName": "template-tanstack",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "npm",
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "eslint",
+    "start",
+    "clerk",
+    "convex",
+    "form",
+    "mcp",
+    "oRPC",
+    "shadcn",
+    "tanstack-query"
+  ]
+}
