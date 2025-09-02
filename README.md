@@ -42,6 +42,18 @@ Este repositorio está diseñado como punto de partida para aplicaciones moderna
 - `npm run lint`: Analiza el código en busca de errores de estilo.
 - `npm run format`: Formatea el código automáticamente.
 
+## Crear un nuevo proyecto
+
+Para crear un nuevo repositorio basado en este template, ejecuta el siguiente comando:
+
+```bash
+git clone https://github.com/cuevacelis/template-tanstack nuevo-proyecto
+```
+
+## Licencia
+
+Este proyecto está licenciado bajo la [Licencia MIT](https://opensource.org/licenses/MIT). Puedes usar, modificar y distribuir este software libremente, siempre y cuando incluyas el aviso de copyright original.
+
 ---
 
 ¡Explora, personaliza y construye tu próxima gran aplicación con este template full-stack!
