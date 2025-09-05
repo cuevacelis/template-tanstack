@@ -1,21 +1,19 @@
-import type { ReactNode } from 'react'
-import type { ZodObject } from 'zod'
-import {
-  ComboboxSingleSelection,
-  type OptionComboboxSingleSelection,
-} from '@/components/combobox/combobox-single-selection'
-import { ErrorMessage } from '@/components/validate/message/error-message'
-import { cn } from '@/lib/utils/class-utils'
-import { isFieldRequired } from '@/lib/utils/zod-utils'
 import { useFieldContext } from '../hooks/use-form-context'
 import { mapErrorMessages } from '../utils/field-utils'
 import { RequiredLabel } from './required-label'
+import type { ReactNode } from 'react'
+import type { ZodObject } from 'zod'
+import type { OptionComboboxSingleSelection } from '@/components/combobox/combobox-single-selection'
+import { ComboboxSingleSelection } from '@/components/combobox/combobox-single-selection'
+import { ErrorMessage } from '@/components/validate/message/error-message'
+import { cn } from '@/lib/utils/class-utils'
+import { isFieldRequired } from '@/lib/utils/zod-utils'
 
 interface ComboboxSingleSelectionFieldProps {
   label?: ReactNode
   name?: string
   placeholder?: string
-  options?: OptionComboboxSingleSelection[]
+  options?: Array<OptionComboboxSingleSelection>
   className?: string
   disabled?: boolean
   labelProps?: React.ComponentProps<'label'>
@@ -46,7 +44,7 @@ export function ComboboxSingleSelectionField({
   schema,
 }: ComboboxSingleSelectionFieldProps) {
   const field = useFieldContext<string>()
-  const nameField = name ?? field.name?.split('.').pop() ?? field.name
+  const nameField = name ?? field.name.split('.').pop() ?? field.name
   const isError = field.state.meta.isTouched && field.state.meta.errors.length
   const errorMessage = isError
     ? mapErrorMessages(field.state.meta.errors)

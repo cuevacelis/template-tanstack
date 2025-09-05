@@ -30,10 +30,10 @@ export interface OptionComboboxSingleSelection {
   label: string
 }
 
-const EMPTY_OPTIONS: OptionComboboxSingleSelection[] = []
+const EMPTY_OPTIONS: Array<OptionComboboxSingleSelection> = []
 
 export interface ComboboxSingleSelectionProps {
-  options?: OptionComboboxSingleSelection[]
+  options?: Array<OptionComboboxSingleSelection>
   onSelect: (value: string) => void
   onBlur?: () => void
   placeholder?: string

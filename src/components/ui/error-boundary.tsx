@@ -1,7 +1,7 @@
 import React from 'react'
+import { AlertCircle, RefreshCw } from 'lucide-react'
 import { Button } from './button'
 import { Card, CardContent, CardHeader, CardTitle } from './card'
-import { AlertCircle, RefreshCw } from 'lucide-react'
 
 interface ErrorBoundaryState {
   hasError: boolean

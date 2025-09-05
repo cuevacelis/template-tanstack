@@ -1,7 +1,8 @@
 import { Link, useLocation } from '@tanstack/react-router'
 import { Image } from '@unpic/react'
 import { ChevronRight, SidebarCloseIcon, SidebarOpenIcon } from 'lucide-react'
-import { DynamicIcon, type IconName } from 'lucide-react/dynamic'
+import { DynamicIcon } from 'lucide-react/dynamic'
+import type { IconName } from 'lucide-react/dynamic'
 import logo from '@/assets/img/logo/sm.png'
 import { Button } from '@/components/ui/button'
 import {
@@ -30,7 +31,7 @@ interface NavigationItem {
   title: string
   url: string
   icon: IconName
-  items: NavigationSubItem[]
+  items: Array<NavigationSubItem>
 }
 
 interface NavigationSubItem {
@@ -40,7 +41,7 @@ interface NavigationSubItem {
 }
 
 // Configuración de navegación basada en Header.tsx
-const navigationItems: NavigationItem[] = [
+const navigationItems: Array<NavigationItem> = [
   {
     title: 'Home',
     url: '/dashboard',
@@ -204,7 +205,7 @@ export function SidebarLoggedComponent() {
                 className="group/collapsible"
                 asChild
               >
-                {item.items && item.items.length > 0 ? (
+                {item.items.length > 0 ? (
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton

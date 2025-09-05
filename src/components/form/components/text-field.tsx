@@ -1,3 +1,5 @@
+import { useFieldContext } from '../hooks/use-form-context'
+import { mapErrorMessages } from '../utils/field-utils'
 import type { ReactNode } from 'react'
 import type { ZodObject } from 'zod'
 import { RequiredLabel } from '@/components/form/components/required-label'
@@ -5,8 +7,6 @@ import { Input } from '@/components/ui/input'
 import { ErrorMessage } from '@/components/validate/message/error-message'
 import { cn } from '@/lib/utils/class-utils'
 import { isFieldRequired } from '@/lib/utils/zod-utils'
-import { useFieldContext } from '../hooks/use-form-context'
-import { mapErrorMessages } from '../utils/field-utils'
 
 interface TextFieldProps {
   label: ReactNode
@@ -37,7 +37,7 @@ export function TextField({
   schema,
 }: TextFieldProps) {
   const field = useFieldContext<string>()
-  const nameField = name ?? field.name?.split('.').pop() ?? field.name
+  const nameField = name ?? field.name.split('.').pop() ?? field.name
   const isError = field.state.meta.isTouched && field.state.meta.errors.length
   const errorMessage = isError
     ? mapErrorMessages(field.state.meta.errors)

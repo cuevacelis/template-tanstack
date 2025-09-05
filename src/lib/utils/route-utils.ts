@@ -6,7 +6,7 @@ import type { IModule } from '@/hooks/services/sidebar-modules/use-sidebar-modul
  * @property options Search options: title, subModule, and url.
  */
 interface IPropsCurrentModule {
-  dataModules: IModule[] | undefined
+  dataModules: Array<IModule> | undefined
   options: {
     title: string
     subModule?: string
@@ -52,7 +52,9 @@ export function getCurrentModuleOfSidebar({
  * const routes = extractSidebarRoutesRecursively(dataModules);
  * // routes = ["/dashboard", "/perfil", "/dashboard/finanzas", ...]
  */
-export function extractSidebarRoutesRecursively(modules: IModule[]): string[] {
+export function extractSidebarRoutesRecursively(
+  modules: Array<IModule>,
+): Array<string> {
   const routes = new Set<string>([]) // Static routes
 
   function extractRoutes(module: IModule) {
@@ -109,7 +111,7 @@ export function isPathInSidebarModules({
   modules,
 }: {
   targetPath?: string
-  modules: IModule[] | undefined
+  modules: Array<IModule> | undefined
 }): boolean {
   if (!modules || modules.length === 0) return false
 

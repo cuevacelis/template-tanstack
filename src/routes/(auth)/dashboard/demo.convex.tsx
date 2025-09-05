@@ -1,6 +1,15 @@
 import { Suspense, useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
-import { useQuery, useMutation } from 'convex/react'
+import { useMutation, useQuery } from 'convex/react'
+import {
+  DollarSign,
+  Grid3X3,
+  List,
+  Package,
+  Plus,
+  ShoppingCart,
+} from 'lucide-react'
+import { api } from '../../../../convex/_generated/api'
 import {
   Card,
   CardContent,
@@ -22,17 +31,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import {
-  Package,
-  DollarSign,
-  ShoppingCart,
-  Plus,
-  Grid3X3,
-  List,
-} from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-
-import { api } from '../../../../convex/_generated/api'
 
 export const Route = createFileRoute('/(auth)/dashboard/demo/convex')({
   component: App,

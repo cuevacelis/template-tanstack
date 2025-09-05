@@ -28,10 +28,9 @@ export const handleAxiosError = (error: unknown) => {
     if (error.response) {
       throw new ErrorQuery({
         message:
-          (error.response?.data as { mensaje?: string })?.mensaje ??
-          error.message ??
-          'Error en la respuesta del servidor',
-        statusCode: error.response?.status,
+          (error.response.data as { mensaje?: string }).mensaje ??
+          error.message,
+        statusCode: error.response.status,
         error: error,
       })
     }
@@ -49,13 +48,13 @@ export const handleAxiosError = (error: unknown) => {
     }
 
     throw new ErrorQuery({
-      message: error?.message ?? 'Error al configurar la solicitud',
+      message: error.message,
     })
   }
 
   throw new ErrorQuery({
     message:
-      error instanceof Error ? error?.message : 'Error desconocido en la API',
+      error instanceof Error ? error.message : 'Error desconocido en la API',
     statusCode: 500,
     error: error,
   })

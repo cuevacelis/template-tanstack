@@ -33,8 +33,8 @@ interface Option {
 }
 
 interface ComboboxMultipleSelectionProps {
-  options: Option[]
-  onSelect: (values: string[]) => void
+  options: Array<Option>
+  onSelect: (values: Array<string>) => void
   placeholder?: string
   className?: string
   messageEmpty?: string
@@ -49,7 +49,7 @@ export function ComboboxMultipleSelection({
 }: ComboboxMultipleSelectionProps) {
   const [open, setOpen] = React.useState(false)
   const isDesktop = useMedia('(min-width: 768px)')
-  const [selectedValues, setSelectedValues] = React.useState<string[]>([])
+  const [selectedValues, setSelectedValues] = React.useState<Array<string>>([])
 
   const handleSelect = (value: string) => {
     const newSelectedValues = selectedValues.includes(value)

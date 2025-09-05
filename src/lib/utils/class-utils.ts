@@ -1,5 +1,6 @@
-import { type ClassValue, clsx } from 'clsx'
+import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import type { ClassValue } from 'clsx'
 
 /**
  * Utility function to merge Tailwind CSS classes conditionally.
@@ -9,6 +10,6 @@ import { twMerge } from 'tailwind-merge'
  * @example
  * cn('p-2', condition && 'bg-red-500', 'text-center')
  */
-export function cn(...inputs: ClassValue[]) {
+export function cn(...inputs: Array<ClassValue>) {
   return twMerge(clsx(inputs))
 }

@@ -13,7 +13,7 @@ export interface IMixedMessageItem {
 interface IProps {
   isShowIcon?: boolean
   modeView?: 'card' | 'inline'
-  messages: IMixedMessageItem[] | undefined
+  messages: Array<IMixedMessageItem> | undefined
   className?: string
 }
 

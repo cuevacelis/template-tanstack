@@ -1,12 +1,5 @@
-import {
-  ZodDefault,
-  ZodObject,
-  ZodOptional,
-  type ZodRawShape,
-  ZodString,
-  type ZodType,
-  ZodUnion,
-} from 'zod'
+import { ZodDefault, ZodOptional, ZodString, ZodUnion } from 'zod'
+import type { ZodObject, ZodRawShape, ZodType } from 'zod'
 
 /**
  * Returns true if the field is required and must not be empty (min(1)) in the given Zod schema.
@@ -20,10 +13,6 @@ export const isFieldRequired = (
   field: string,
 ): boolean => {
   const fieldSchema = schema.shape[field] as ZodType
-
-  if (!fieldSchema) {
-    return false
-  }
 
   // Si es opcional o tiene valor por defecto, no es requerido
   if (fieldSchema instanceof ZodOptional || fieldSchema instanceof ZodDefault) {

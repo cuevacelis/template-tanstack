@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { Link, createFileRoute } from '@tanstack/react-router'
 import { SignedIn, SignedOut } from '@clerk/clerk-react'
 import logo from '@/assets/img/logo/logo.svg'
 import { Button } from '@/components/ui/button'

@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils/class-utils'
 interface IProps {
   isShowIcon?: boolean
   modeView?: 'card' | 'inline'
-  message: string[] | string | undefined
+  message: Array<string> | string | undefined
   className?: string
 }
 

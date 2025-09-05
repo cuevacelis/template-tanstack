@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import { Outlet, createFileRoute } from '@tanstack/react-router'
 import useLocalStorage from 'react-use/lib/useLocalStorage'
 import { SidebarLoggedComponent } from '@/routes/(auth)/-components/sidebar-logged/sidebar-logged'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'

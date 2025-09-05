@@ -4,7 +4,7 @@
  * @example
  *   mapErrorMessages(["Error simple", { message: "Error complejo" }]) // ["Error simple", "Error complejo"]
  */
-export const mapErrorMessages = (errors: unknown[]): string[] =>
+export const mapErrorMessages = (errors: Array<unknown>): Array<string> =>
   errors.map((err) =>
     typeof err === 'string'
       ? err

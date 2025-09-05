@@ -1,8 +1,9 @@
+import { DynamicIcon } from 'lucide-react/dynamic'
+import { useFormContext } from '../../hooks/use-form-context'
+import type { IconName } from 'lucide-react/dynamic'
 import type { VariantProps } from 'class-variance-authority'
-import { DynamicIcon, type IconName } from 'lucide-react/dynamic'
 import type { buttonVariants } from '@/components/ui/button'
 import { Button } from '@/components/ui/button'
-import { useFormContext } from '../../hooks/use-form-context'
 
 interface SubscribeButtonProps<TMeta = unknown>
   extends React.ComponentProps<'button'>,

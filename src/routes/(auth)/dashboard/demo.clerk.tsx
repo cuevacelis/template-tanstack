@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useUser, useAuth } from '@clerk/clerk-react'
+import { useAuth, useUser } from '@clerk/clerk-react'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -166,7 +166,7 @@ function App() {
                             Primario
                           </Badge>
                         )}
-                        {email.verification?.status === 'verified' && (
+                        {email.verification.status === 'verified' && (
                           <Badge
                             variant="outline"
                             className="text-xs text-green-600"

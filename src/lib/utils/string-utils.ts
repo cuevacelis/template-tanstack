@@ -19,9 +19,9 @@ export function capitalizeFirstLetter(str: string) {
  * convertToStringOrNull(undefined) // null
  */
 export function convertToStringOrNull(
-  input: string | string[] | undefined | null,
+  input: string | Array<string> | undefined | null,
 ): string | null {
-  if (typeof input === 'undefined' || input === undefined || input === null) {
+  if (typeof input === 'undefined' || input === null) {
     return null
   }
 
@@ -69,7 +69,7 @@ export function capitalizeFirstLetterOfEachWord(sentence: string) {
 export function getInitialsFromFullName(fullName: string): string {
   const palabras = fullName.split(' ').filter((palabra) => palabra.length > 0)
 
-  let iniciales: string[] = []
+  let iniciales: Array<string> = []
 
   if (palabras.length === 1) {
     iniciales = [

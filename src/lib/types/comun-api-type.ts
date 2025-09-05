@@ -1,17 +1,17 @@
 export interface IBodyComunFiltro {
-  filtros: {
+  filtros: Array<{
     pTipoFiltro: string
     pParametro1: string
     pParametro2: string
     pParametro3: string
     pParametro4: string
     pParametro5: string
-  }[]
+  }>
 }
 export interface ComunFiltroResponse {
   codigo?: number
   mensaje?: string
-  data?: ComunFiltroData[]
+  data?: Array<ComunFiltroData>
 }
 
 export interface ComunFiltroData {
@@ -21,7 +21,7 @@ export interface ComunFiltroData {
   pParametro3: string
   pParametro4: string
   pParametro5: string
-  data: ComunFiltroItem[]
+  data: Array<ComunFiltroItem>
 }
 
 export interface ComunFiltroItem {

@@ -4,8 +4,8 @@ import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 import {
-  tanstackQueryGetContext,
   TanstackQueryProvider,
+  tanstackQueryGetContext,
 } from './context/tanstack-query/tanstack-query-provider'
 
 // Create a new router instance

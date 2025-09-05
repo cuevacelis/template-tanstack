@@ -128,11 +128,11 @@ export const loadFont = async (url: string): Promise<string> => {
 
 export const configureFonts = async (
   doc: jsPDF,
-  fonts: {
+  fonts: Array<{
     path: string
     vfsName: string
     fontName: string
-  }[] = [],
+  }> = [],
 ): Promise<void> => {
   try {
     if (fonts.length === 0) {
@@ -164,7 +164,7 @@ export const addLogo = async (
   try {
     const logoBase64 = await loadImage(logoPath)
 
-    if (!logoBase64?.startsWith('data:image')) {
+    if (!logoBase64.startsWith('data:image')) {
       throw new Error('La imagen no se pudo cargar en formato base64 válido')
     }
 

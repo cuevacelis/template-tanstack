@@ -37,8 +37,7 @@ export function formatCurrencyAmount({
   customSymbol,
 }: FormatCurrencyParams): string {
   // Asegurarnos de que tenemos una moneda válida
-  const validCurrency = currency && CURRENCY_CONFIG[currency] ? currency : 'PEN'
-  const config = CURRENCY_CONFIG[validCurrency]
+  const config = CURRENCY_CONFIG[currency]
 
   const value = new Intl.NumberFormat(config.locale, {
     style: 'decimal',

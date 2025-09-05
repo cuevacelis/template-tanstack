@@ -1,8 +1,8 @@
 import { read, utils } from 'xlsx'
 
 interface ImportExcelResult {
-  data: unknown[]
-  headers: string[]
+  data: Array<unknown>
+  headers: Array<string>
 }
 
 /**
@@ -33,7 +33,7 @@ export async function importExcelFile(file: File): Promise<ImportExcelResult> {
         for (const cell in workSheet) {
           if (
             !cell.startsWith('!') &&
-            typeof (workSheet as Record<string, { v: unknown }>)[cell]?.v ===
+            typeof (workSheet as Record<string, { v: unknown }>)[cell].v ===
               'number'
           ) {
             // Aquí podríamos aplicar formateo si es necesario
@@ -46,7 +46,7 @@ export async function importExcelFile(file: File): Promise<ImportExcelResult> {
 
         resolve({
           data: fileData,
-          headers: headers as string[],
+          headers: headers as Array<string>,
         })
       } catch (error) {
         reject(error)
@@ -72,7 +72,7 @@ export async function importExcelFile(file: File): Promise<ImportExcelResult> {
  */
 export function isValidExcelFile(
   file: File,
-  extensions: string[] = ['xlsx', 'xls', 'csv'],
+  extensions: Array<string> = ['xlsx', 'xls', 'csv'],
 ): boolean {
   const parts = file.name.split('.')
   const extension = parts[parts.length - 1].toLowerCase()

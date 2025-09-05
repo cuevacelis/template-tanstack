@@ -1,6 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { Navigate, createFileRoute } from '@tanstack/react-router'
 import { SignIn, SignedIn, SignedOut } from '@clerk/clerk-react'
-import { Navigate } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/(not-auth)/login/')({
   component: RouteComponent,

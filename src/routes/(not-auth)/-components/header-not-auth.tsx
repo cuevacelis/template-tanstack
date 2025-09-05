@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
-import logo from '@/assets/img/logo/logo.svg'
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
+import logo from '@/assets/img/logo/logo.svg'
 import { Button } from '@/components/ui/button'
 
 export default function HeaderNotAuth() {

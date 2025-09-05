@@ -7,9 +7,9 @@
  * toStringOrNull(undefined) // null
  */
 export function toStringOrNull(
-  input: number | number[] | undefined | null,
+  input: number | Array<number> | undefined | null,
 ): string | null {
-  if (typeof input === 'undefined' || input === undefined || input === null) {
+  if (typeof input === 'undefined' || input === null) {
     return null
   }
 
@@ -29,9 +29,9 @@ export function toStringOrNull(
  * toNumberOrNull(undefined) // null
  */
 export function toNumberOrNull(
-  input: string | string[] | undefined | null,
+  input: string | Array<string> | undefined | null,
 ): number | null {
-  if (typeof input === 'undefined' || input === undefined || input === null) {
+  if (typeof input === 'undefined' || input === null) {
     return null
   }
 
