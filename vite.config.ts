@@ -13,6 +13,10 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart({
       customViteReactPlugin: true,
+      tsr: {
+        routeToken: 'layout',
+        indexToken: 'page',
+      },
     }),
     viteReact(),
   ],

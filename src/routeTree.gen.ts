@@ -11,75 +11,110 @@
 import { createServerRootRoute } from '@tanstack/react-start/server'
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as DemoTanstackQueryRouteImport } from './routes/demo.tanstack-query'
-import { Route as DemoOrpcTodoRouteImport } from './routes/demo.orpc-todo'
-import { Route as DemoMcpTodosRouteImport } from './routes/demo.mcp-todos'
-import { Route as DemoConvexRouteImport } from './routes/demo.convex'
-import { Route as DemoClerkRouteImport } from './routes/demo.clerk'
-import { Route as DemoStartServerFuncsRouteImport } from './routes/demo.start.server-funcs'
-import { Route as DemoStartApiRequestRouteImport } from './routes/demo.start.api-request'
-import { Route as DemoFormSimpleRouteImport } from './routes/demo.form.simple'
-import { Route as DemoFormAddressRouteImport } from './routes/demo.form.address'
+import { Route as notAuthLayoutRouteImport } from './routes/(not-auth)/layout'
+import { Route as authLayoutRouteImport } from './routes/(auth)/layout'
+import { Route as notAuthPageRouteImport } from './routes/(not-auth)/page'
+import { Route as notAuthRegisterPageRouteImport } from './routes/(not-auth)/register/page'
+import { Route as notAuthLoginPageRouteImport } from './routes/(not-auth)/login/page'
+import { Route as authDashboardPageRouteImport } from './routes/(auth)/dashboard/page'
+import { Route as authDashboardDemoTanstackQueryRouteImport } from './routes/(auth)/dashboard/demo.tanstack-query'
+import { Route as authDashboardDemoOrpcTodoRouteImport } from './routes/(auth)/dashboard/demo.orpc-todo'
+import { Route as authDashboardDemoMcpTodosRouteImport } from './routes/(auth)/dashboard/demo.mcp-todos'
+import { Route as authDashboardDemoConvexRouteImport } from './routes/(auth)/dashboard/demo.convex'
+import { Route as authDashboardDemoClerkRouteImport } from './routes/(auth)/dashboard/demo.clerk'
+import { Route as authDashboardDemoStartServerFuncsRouteImport } from './routes/(auth)/dashboard/demo.start.server-funcs'
+import { Route as authDashboardDemoStartApiRequestRouteImport } from './routes/(auth)/dashboard/demo.start.api-request'
+import { Route as authDashboardDemoFormSimpleRouteImport } from './routes/(auth)/dashboard/demo.form.simple'
+import { Route as authDashboardDemoFormAddressRouteImport } from './routes/(auth)/dashboard/demo.form.address'
 import { ServerRoute as McpServerRouteImport } from './routes/mcp'
-import { ServerRoute as ApiMcpTodosServerRouteImport } from './routes/api.mcp-todos'
-import { ServerRoute as ApiDemoTqTodosServerRouteImport } from './routes/api.demo-tq-todos'
-import { ServerRoute as ApiDemoNamesServerRouteImport } from './routes/api.demo-names'
-import { ServerRoute as ApiSplatServerRouteImport } from './routes/api.$'
-import { ServerRoute as ApiRpcSplatServerRouteImport } from './routes/api.rpc.$'
+import { ServerRoute as ApiMcpTodosServerRouteImport } from './routes/api/mcp-todos'
+import { ServerRoute as ApiDemoTqTodosServerRouteImport } from './routes/api/demo-tq-todos'
+import { ServerRoute as ApiDemoNamesServerRouteImport } from './routes/api/demo-names'
+import { ServerRoute as ApiSplatServerRouteImport } from './routes/api/$'
+import { ServerRoute as ApiRpcSplatServerRouteImport } from './routes/api/rpc.$'
 
 const rootServerRouteImport = createServerRootRoute()
 
-const IndexRoute = IndexRouteImport.update({
+const notAuthLayoutRoute = notAuthLayoutRouteImport.update({
+  id: '/(not-auth)',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authLayoutRoute = authLayoutRouteImport.update({
+  id: '/(auth)',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const notAuthPageRoute = notAuthPageRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => notAuthLayoutRoute,
 } as any)
-const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
-  id: '/demo/tanstack-query',
-  path: '/demo/tanstack-query',
-  getParentRoute: () => rootRouteImport,
+const notAuthRegisterPageRoute = notAuthRegisterPageRouteImport.update({
+  id: '/register/',
+  path: '/register/',
+  getParentRoute: () => notAuthLayoutRoute,
 } as any)
-const DemoOrpcTodoRoute = DemoOrpcTodoRouteImport.update({
-  id: '/demo/orpc-todo',
-  path: '/demo/orpc-todo',
-  getParentRoute: () => rootRouteImport,
+const notAuthLoginPageRoute = notAuthLoginPageRouteImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => notAuthLayoutRoute,
 } as any)
-const DemoMcpTodosRoute = DemoMcpTodosRouteImport.update({
-  id: '/demo/mcp-todos',
-  path: '/demo/mcp-todos',
-  getParentRoute: () => rootRouteImport,
+const authDashboardPageRoute = authDashboardPageRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => authLayoutRoute,
 } as any)
-const DemoConvexRoute = DemoConvexRouteImport.update({
-  id: '/demo/convex',
-  path: '/demo/convex',
-  getParentRoute: () => rootRouteImport,
+const authDashboardDemoTanstackQueryRoute =
+  authDashboardDemoTanstackQueryRouteImport.update({
+    id: '/dashboard/demo/tanstack-query',
+    path: '/dashboard/demo/tanstack-query',
+    getParentRoute: () => authLayoutRoute,
+  } as any)
+const authDashboardDemoOrpcTodoRoute =
+  authDashboardDemoOrpcTodoRouteImport.update({
+    id: '/dashboard/demo/orpc-todo',
+    path: '/dashboard/demo/orpc-todo',
+    getParentRoute: () => authLayoutRoute,
+  } as any)
+const authDashboardDemoMcpTodosRoute =
+  authDashboardDemoMcpTodosRouteImport.update({
+    id: '/dashboard/demo/mcp-todos',
+    path: '/dashboard/demo/mcp-todos',
+    getParentRoute: () => authLayoutRoute,
+  } as any)
+const authDashboardDemoConvexRoute = authDashboardDemoConvexRouteImport.update({
+  id: '/dashboard/demo/convex',
+  path: '/dashboard/demo/convex',
+  getParentRoute: () => authLayoutRoute,
 } as any)
-const DemoClerkRoute = DemoClerkRouteImport.update({
-  id: '/demo/clerk',
-  path: '/demo/clerk',
-  getParentRoute: () => rootRouteImport,
+const authDashboardDemoClerkRoute = authDashboardDemoClerkRouteImport.update({
+  id: '/dashboard/demo/clerk',
+  path: '/dashboard/demo/clerk',
+  getParentRoute: () => authLayoutRoute,
 } as any)
-const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
-  id: '/demo/start/server-funcs',
-  path: '/demo/start/server-funcs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStartApiRequestRoute = DemoStartApiRequestRouteImport.update({
-  id: '/demo/start/api-request',
-  path: '/demo/start/api-request',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoFormSimpleRoute = DemoFormSimpleRouteImport.update({
-  id: '/demo/form/simple',
-  path: '/demo/form/simple',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoFormAddressRoute = DemoFormAddressRouteImport.update({
-  id: '/demo/form/address',
-  path: '/demo/form/address',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const authDashboardDemoStartServerFuncsRoute =
+  authDashboardDemoStartServerFuncsRouteImport.update({
+    id: '/dashboard/demo/start/server-funcs',
+    path: '/dashboard/demo/start/server-funcs',
+    getParentRoute: () => authLayoutRoute,
+  } as any)
+const authDashboardDemoStartApiRequestRoute =
+  authDashboardDemoStartApiRequestRouteImport.update({
+    id: '/dashboard/demo/start/api-request',
+    path: '/dashboard/demo/start/api-request',
+    getParentRoute: () => authLayoutRoute,
+  } as any)
+const authDashboardDemoFormSimpleRoute =
+  authDashboardDemoFormSimpleRouteImport.update({
+    id: '/dashboard/demo/form/simple',
+    path: '/dashboard/demo/form/simple',
+    getParentRoute: () => authLayoutRoute,
+  } as any)
+const authDashboardDemoFormAddressRoute =
+  authDashboardDemoFormAddressRouteImport.update({
+    id: '/dashboard/demo/form/address',
+    path: '/dashboard/demo/form/address',
+    getParentRoute: () => authLayoutRoute,
+  } as any)
 const McpServerRoute = McpServerRouteImport.update({
   id: '/mcp',
   path: '/mcp',
@@ -112,92 +147,106 @@ const ApiRpcSplatServerRoute = ApiRpcSplatServerRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/demo/clerk': typeof DemoClerkRoute
-  '/demo/convex': typeof DemoConvexRoute
-  '/demo/mcp-todos': typeof DemoMcpTodosRoute
-  '/demo/orpc-todo': typeof DemoOrpcTodoRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/demo/form/address': typeof DemoFormAddressRoute
-  '/demo/form/simple': typeof DemoFormSimpleRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/': typeof notAuthPageRoute
+  '/dashboard': typeof authDashboardPageRoute
+  '/login': typeof notAuthLoginPageRoute
+  '/register': typeof notAuthRegisterPageRoute
+  '/dashboard/demo/clerk': typeof authDashboardDemoClerkRoute
+  '/dashboard/demo/convex': typeof authDashboardDemoConvexRoute
+  '/dashboard/demo/mcp-todos': typeof authDashboardDemoMcpTodosRoute
+  '/dashboard/demo/orpc-todo': typeof authDashboardDemoOrpcTodoRoute
+  '/dashboard/demo/tanstack-query': typeof authDashboardDemoTanstackQueryRoute
+  '/dashboard/demo/form/address': typeof authDashboardDemoFormAddressRoute
+  '/dashboard/demo/form/simple': typeof authDashboardDemoFormSimpleRoute
+  '/dashboard/demo/start/api-request': typeof authDashboardDemoStartApiRequestRoute
+  '/dashboard/demo/start/server-funcs': typeof authDashboardDemoStartServerFuncsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/demo/clerk': typeof DemoClerkRoute
-  '/demo/convex': typeof DemoConvexRoute
-  '/demo/mcp-todos': typeof DemoMcpTodosRoute
-  '/demo/orpc-todo': typeof DemoOrpcTodoRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/demo/form/address': typeof DemoFormAddressRoute
-  '/demo/form/simple': typeof DemoFormSimpleRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/': typeof notAuthPageRoute
+  '/dashboard': typeof authDashboardPageRoute
+  '/login': typeof notAuthLoginPageRoute
+  '/register': typeof notAuthRegisterPageRoute
+  '/dashboard/demo/clerk': typeof authDashboardDemoClerkRoute
+  '/dashboard/demo/convex': typeof authDashboardDemoConvexRoute
+  '/dashboard/demo/mcp-todos': typeof authDashboardDemoMcpTodosRoute
+  '/dashboard/demo/orpc-todo': typeof authDashboardDemoOrpcTodoRoute
+  '/dashboard/demo/tanstack-query': typeof authDashboardDemoTanstackQueryRoute
+  '/dashboard/demo/form/address': typeof authDashboardDemoFormAddressRoute
+  '/dashboard/demo/form/simple': typeof authDashboardDemoFormSimpleRoute
+  '/dashboard/demo/start/api-request': typeof authDashboardDemoStartApiRequestRoute
+  '/dashboard/demo/start/server-funcs': typeof authDashboardDemoStartServerFuncsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/demo/clerk': typeof DemoClerkRoute
-  '/demo/convex': typeof DemoConvexRoute
-  '/demo/mcp-todos': typeof DemoMcpTodosRoute
-  '/demo/orpc-todo': typeof DemoOrpcTodoRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/demo/form/address': typeof DemoFormAddressRoute
-  '/demo/form/simple': typeof DemoFormSimpleRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
+  '/(auth)': typeof authLayoutRouteWithChildren
+  '/(not-auth)': typeof notAuthLayoutRouteWithChildren
+  '/(not-auth)/': typeof notAuthPageRoute
+  '/(auth)/dashboard/': typeof authDashboardPageRoute
+  '/(not-auth)/login/': typeof notAuthLoginPageRoute
+  '/(not-auth)/register/': typeof notAuthRegisterPageRoute
+  '/(auth)/dashboard/demo/clerk': typeof authDashboardDemoClerkRoute
+  '/(auth)/dashboard/demo/convex': typeof authDashboardDemoConvexRoute
+  '/(auth)/dashboard/demo/mcp-todos': typeof authDashboardDemoMcpTodosRoute
+  '/(auth)/dashboard/demo/orpc-todo': typeof authDashboardDemoOrpcTodoRoute
+  '/(auth)/dashboard/demo/tanstack-query': typeof authDashboardDemoTanstackQueryRoute
+  '/(auth)/dashboard/demo/form/address': typeof authDashboardDemoFormAddressRoute
+  '/(auth)/dashboard/demo/form/simple': typeof authDashboardDemoFormSimpleRoute
+  '/(auth)/dashboard/demo/start/api-request': typeof authDashboardDemoStartApiRequestRoute
+  '/(auth)/dashboard/demo/start/server-funcs': typeof authDashboardDemoStartServerFuncsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/demo/clerk'
-    | '/demo/convex'
-    | '/demo/mcp-todos'
-    | '/demo/orpc-todo'
-    | '/demo/tanstack-query'
-    | '/demo/form/address'
-    | '/demo/form/simple'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
+    | '/dashboard'
+    | '/login'
+    | '/register'
+    | '/dashboard/demo/clerk'
+    | '/dashboard/demo/convex'
+    | '/dashboard/demo/mcp-todos'
+    | '/dashboard/demo/orpc-todo'
+    | '/dashboard/demo/tanstack-query'
+    | '/dashboard/demo/form/address'
+    | '/dashboard/demo/form/simple'
+    | '/dashboard/demo/start/api-request'
+    | '/dashboard/demo/start/server-funcs'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/demo/clerk'
-    | '/demo/convex'
-    | '/demo/mcp-todos'
-    | '/demo/orpc-todo'
-    | '/demo/tanstack-query'
-    | '/demo/form/address'
-    | '/demo/form/simple'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
+    | '/dashboard'
+    | '/login'
+    | '/register'
+    | '/dashboard/demo/clerk'
+    | '/dashboard/demo/convex'
+    | '/dashboard/demo/mcp-todos'
+    | '/dashboard/demo/orpc-todo'
+    | '/dashboard/demo/tanstack-query'
+    | '/dashboard/demo/form/address'
+    | '/dashboard/demo/form/simple'
+    | '/dashboard/demo/start/api-request'
+    | '/dashboard/demo/start/server-funcs'
   id:
     | '__root__'
-    | '/'
-    | '/demo/clerk'
-    | '/demo/convex'
-    | '/demo/mcp-todos'
-    | '/demo/orpc-todo'
-    | '/demo/tanstack-query'
-    | '/demo/form/address'
-    | '/demo/form/simple'
-    | '/demo/start/api-request'
-    | '/demo/start/server-funcs'
+    | '/(auth)'
+    | '/(not-auth)'
+    | '/(not-auth)/'
+    | '/(auth)/dashboard/'
+    | '/(not-auth)/login/'
+    | '/(not-auth)/register/'
+    | '/(auth)/dashboard/demo/clerk'
+    | '/(auth)/dashboard/demo/convex'
+    | '/(auth)/dashboard/demo/mcp-todos'
+    | '/(auth)/dashboard/demo/orpc-todo'
+    | '/(auth)/dashboard/demo/tanstack-query'
+    | '/(auth)/dashboard/demo/form/address'
+    | '/(auth)/dashboard/demo/form/simple'
+    | '/(auth)/dashboard/demo/start/api-request'
+    | '/(auth)/dashboard/demo/start/server-funcs'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  DemoClerkRoute: typeof DemoClerkRoute
-  DemoConvexRoute: typeof DemoConvexRoute
-  DemoMcpTodosRoute: typeof DemoMcpTodosRoute
-  DemoOrpcTodoRoute: typeof DemoOrpcTodoRoute
-  DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
-  DemoFormAddressRoute: typeof DemoFormAddressRoute
-  DemoFormSimpleRoute: typeof DemoFormSimpleRoute
-  DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
-  DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
+  authLayoutRoute: typeof authLayoutRouteWithChildren
+  notAuthLayoutRoute: typeof notAuthLayoutRouteWithChildren
 }
 export interface FileServerRoutesByFullPath {
   '/mcp': typeof McpServerRoute
@@ -262,75 +311,110 @@ export interface RootServerRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
+    '/(not-auth)': {
+      id: '/(not-auth)'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof notAuthLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/tanstack-query': {
-      id: '/demo/tanstack-query'
-      path: '/demo/tanstack-query'
-      fullPath: '/demo/tanstack-query'
-      preLoaderRoute: typeof DemoTanstackQueryRouteImport
+    '/(auth)': {
+      id: '/(auth)'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof authLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/orpc-todo': {
-      id: '/demo/orpc-todo'
-      path: '/demo/orpc-todo'
-      fullPath: '/demo/orpc-todo'
-      preLoaderRoute: typeof DemoOrpcTodoRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(not-auth)/': {
+      id: '/(not-auth)/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof notAuthPageRouteImport
+      parentRoute: typeof notAuthLayoutRoute
     }
-    '/demo/mcp-todos': {
-      id: '/demo/mcp-todos'
-      path: '/demo/mcp-todos'
-      fullPath: '/demo/mcp-todos'
-      preLoaderRoute: typeof DemoMcpTodosRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(not-auth)/register/': {
+      id: '/(not-auth)/register/'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof notAuthRegisterPageRouteImport
+      parentRoute: typeof notAuthLayoutRoute
     }
-    '/demo/convex': {
-      id: '/demo/convex'
-      path: '/demo/convex'
-      fullPath: '/demo/convex'
-      preLoaderRoute: typeof DemoConvexRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(not-auth)/login/': {
+      id: '/(not-auth)/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof notAuthLoginPageRouteImport
+      parentRoute: typeof notAuthLayoutRoute
     }
-    '/demo/clerk': {
-      id: '/demo/clerk'
-      path: '/demo/clerk'
-      fullPath: '/demo/clerk'
-      preLoaderRoute: typeof DemoClerkRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(auth)/dashboard/': {
+      id: '/(auth)/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof authDashboardPageRouteImport
+      parentRoute: typeof authLayoutRoute
     }
-    '/demo/start/server-funcs': {
-      id: '/demo/start/server-funcs'
-      path: '/demo/start/server-funcs'
-      fullPath: '/demo/start/server-funcs'
-      preLoaderRoute: typeof DemoStartServerFuncsRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(auth)/dashboard/demo/tanstack-query': {
+      id: '/(auth)/dashboard/demo/tanstack-query'
+      path: '/dashboard/demo/tanstack-query'
+      fullPath: '/dashboard/demo/tanstack-query'
+      preLoaderRoute: typeof authDashboardDemoTanstackQueryRouteImport
+      parentRoute: typeof authLayoutRoute
     }
-    '/demo/start/api-request': {
-      id: '/demo/start/api-request'
-      path: '/demo/start/api-request'
-      fullPath: '/demo/start/api-request'
-      preLoaderRoute: typeof DemoStartApiRequestRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(auth)/dashboard/demo/orpc-todo': {
+      id: '/(auth)/dashboard/demo/orpc-todo'
+      path: '/dashboard/demo/orpc-todo'
+      fullPath: '/dashboard/demo/orpc-todo'
+      preLoaderRoute: typeof authDashboardDemoOrpcTodoRouteImport
+      parentRoute: typeof authLayoutRoute
     }
-    '/demo/form/simple': {
-      id: '/demo/form/simple'
-      path: '/demo/form/simple'
-      fullPath: '/demo/form/simple'
-      preLoaderRoute: typeof DemoFormSimpleRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(auth)/dashboard/demo/mcp-todos': {
+      id: '/(auth)/dashboard/demo/mcp-todos'
+      path: '/dashboard/demo/mcp-todos'
+      fullPath: '/dashboard/demo/mcp-todos'
+      preLoaderRoute: typeof authDashboardDemoMcpTodosRouteImport
+      parentRoute: typeof authLayoutRoute
     }
-    '/demo/form/address': {
-      id: '/demo/form/address'
-      path: '/demo/form/address'
-      fullPath: '/demo/form/address'
-      preLoaderRoute: typeof DemoFormAddressRouteImport
-      parentRoute: typeof rootRouteImport
+    '/(auth)/dashboard/demo/convex': {
+      id: '/(auth)/dashboard/demo/convex'
+      path: '/dashboard/demo/convex'
+      fullPath: '/dashboard/demo/convex'
+      preLoaderRoute: typeof authDashboardDemoConvexRouteImport
+      parentRoute: typeof authLayoutRoute
+    }
+    '/(auth)/dashboard/demo/clerk': {
+      id: '/(auth)/dashboard/demo/clerk'
+      path: '/dashboard/demo/clerk'
+      fullPath: '/dashboard/demo/clerk'
+      preLoaderRoute: typeof authDashboardDemoClerkRouteImport
+      parentRoute: typeof authLayoutRoute
+    }
+    '/(auth)/dashboard/demo/start/server-funcs': {
+      id: '/(auth)/dashboard/demo/start/server-funcs'
+      path: '/dashboard/demo/start/server-funcs'
+      fullPath: '/dashboard/demo/start/server-funcs'
+      preLoaderRoute: typeof authDashboardDemoStartServerFuncsRouteImport
+      parentRoute: typeof authLayoutRoute
+    }
+    '/(auth)/dashboard/demo/start/api-request': {
+      id: '/(auth)/dashboard/demo/start/api-request'
+      path: '/dashboard/demo/start/api-request'
+      fullPath: '/dashboard/demo/start/api-request'
+      preLoaderRoute: typeof authDashboardDemoStartApiRequestRouteImport
+      parentRoute: typeof authLayoutRoute
+    }
+    '/(auth)/dashboard/demo/form/simple': {
+      id: '/(auth)/dashboard/demo/form/simple'
+      path: '/dashboard/demo/form/simple'
+      fullPath: '/dashboard/demo/form/simple'
+      preLoaderRoute: typeof authDashboardDemoFormSimpleRouteImport
+      parentRoute: typeof authLayoutRoute
+    }
+    '/(auth)/dashboard/demo/form/address': {
+      id: '/(auth)/dashboard/demo/form/address'
+      path: '/dashboard/demo/form/address'
+      fullPath: '/dashboard/demo/form/address'
+      preLoaderRoute: typeof authDashboardDemoFormAddressRouteImport
+      parentRoute: typeof authLayoutRoute
     }
   }
 }
@@ -381,17 +465,56 @@ declare module '@tanstack/react-start/server' {
   }
 }
 
+interface authLayoutRouteChildren {
+  authDashboardPageRoute: typeof authDashboardPageRoute
+  authDashboardDemoClerkRoute: typeof authDashboardDemoClerkRoute
+  authDashboardDemoConvexRoute: typeof authDashboardDemoConvexRoute
+  authDashboardDemoMcpTodosRoute: typeof authDashboardDemoMcpTodosRoute
+  authDashboardDemoOrpcTodoRoute: typeof authDashboardDemoOrpcTodoRoute
+  authDashboardDemoTanstackQueryRoute: typeof authDashboardDemoTanstackQueryRoute
+  authDashboardDemoFormAddressRoute: typeof authDashboardDemoFormAddressRoute
+  authDashboardDemoFormSimpleRoute: typeof authDashboardDemoFormSimpleRoute
+  authDashboardDemoStartApiRequestRoute: typeof authDashboardDemoStartApiRequestRoute
+  authDashboardDemoStartServerFuncsRoute: typeof authDashboardDemoStartServerFuncsRoute
+}
+
+const authLayoutRouteChildren: authLayoutRouteChildren = {
+  authDashboardPageRoute: authDashboardPageRoute,
+  authDashboardDemoClerkRoute: authDashboardDemoClerkRoute,
+  authDashboardDemoConvexRoute: authDashboardDemoConvexRoute,
+  authDashboardDemoMcpTodosRoute: authDashboardDemoMcpTodosRoute,
+  authDashboardDemoOrpcTodoRoute: authDashboardDemoOrpcTodoRoute,
+  authDashboardDemoTanstackQueryRoute: authDashboardDemoTanstackQueryRoute,
+  authDashboardDemoFormAddressRoute: authDashboardDemoFormAddressRoute,
+  authDashboardDemoFormSimpleRoute: authDashboardDemoFormSimpleRoute,
+  authDashboardDemoStartApiRequestRoute: authDashboardDemoStartApiRequestRoute,
+  authDashboardDemoStartServerFuncsRoute:
+    authDashboardDemoStartServerFuncsRoute,
+}
+
+const authLayoutRouteWithChildren = authLayoutRoute._addFileChildren(
+  authLayoutRouteChildren,
+)
+
+interface notAuthLayoutRouteChildren {
+  notAuthPageRoute: typeof notAuthPageRoute
+  notAuthLoginPageRoute: typeof notAuthLoginPageRoute
+  notAuthRegisterPageRoute: typeof notAuthRegisterPageRoute
+}
+
+const notAuthLayoutRouteChildren: notAuthLayoutRouteChildren = {
+  notAuthPageRoute: notAuthPageRoute,
+  notAuthLoginPageRoute: notAuthLoginPageRoute,
+  notAuthRegisterPageRoute: notAuthRegisterPageRoute,
+}
+
+const notAuthLayoutRouteWithChildren = notAuthLayoutRoute._addFileChildren(
+  notAuthLayoutRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  DemoClerkRoute: DemoClerkRoute,
-  DemoConvexRoute: DemoConvexRoute,
-  DemoMcpTodosRoute: DemoMcpTodosRoute,
-  DemoOrpcTodoRoute: DemoOrpcTodoRoute,
-  DemoTanstackQueryRoute: DemoTanstackQueryRoute,
-  DemoFormAddressRoute: DemoFormAddressRoute,
-  DemoFormSimpleRoute: DemoFormSimpleRoute,
-  DemoStartApiRequestRoute: DemoStartApiRequestRoute,
-  DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
+  authLayoutRoute: authLayoutRouteWithChildren,
+  notAuthLayoutRoute: notAuthLayoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
