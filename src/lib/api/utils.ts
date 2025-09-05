@@ -1,6 +1,6 @@
-import axios from "axios";
-import Cookies from "js-cookie";
-import { ErrorQuery } from "@/lib/custom-error/error-query";
+import axios from 'axios'
+import Cookies from 'js-cookie'
+import { ErrorQuery } from '@/lib/custom-error/error-query'
 
 /**
  * Retrieves the authentication token from cookies.
@@ -9,8 +9,8 @@ import { ErrorQuery } from "@/lib/custom-error/error-query";
  * const token = getAuthToken();
  */
 export const getAuthToken = () => {
-	return Cookies.get("token");
-};
+  return Cookies.get('token')
+}
 
 /**
  * Handles errors from Axios requests and throws a custom ErrorQuery.
@@ -24,42 +24,42 @@ export const getAuthToken = () => {
  * }
  */
 export const handleAxiosError = (error: unknown) => {
-	if (axios.isAxiosError(error)) {
-		if (error.response) {
-			throw new ErrorQuery({
-				message:
-					(error.response?.data as { mensaje?: string })?.mensaje ??
-					error.message ??
-					"Error en la respuesta del servidor",
-				statusCode: error.response?.status,
-				error: error,
-			});
-		}
+  if (axios.isAxiosError(error)) {
+    if (error.response) {
+      throw new ErrorQuery({
+        message:
+          (error.response?.data as { mensaje?: string })?.mensaje ??
+          error.message ??
+          'Error en la respuesta del servidor',
+        statusCode: error.response?.status,
+        error: error,
+      })
+    }
 
-		if (error.request) {
-			throw new ErrorQuery({
-				message: "No se recibió respuesta del servidor",
-				statusCode: 0,
-			});
-		}
+    if (error.request) {
+      throw new ErrorQuery({
+        message: 'No se recibió respuesta del servidor',
+        statusCode: 0,
+      })
+    }
 
-		if (error.code === "ERR_CANCELED") {
-			// console.info("Request was canceled", error.message);
-			return;
-		}
+    if (error.code === 'ERR_CANCELED') {
+      // console.info("Request was canceled", error.message);
+      return
+    }
 
-		throw new ErrorQuery({
-			message: error?.message ?? "Error al configurar la solicitud",
-		});
-	}
+    throw new ErrorQuery({
+      message: error?.message ?? 'Error al configurar la solicitud',
+    })
+  }
 
-	throw new ErrorQuery({
-		message:
-			error instanceof Error ? error?.message : "Error desconocido en la API",
-		statusCode: 500,
-		error: error,
-	});
-};
+  throw new ErrorQuery({
+    message:
+      error instanceof Error ? error?.message : 'Error desconocido en la API',
+    statusCode: 500,
+    error: error,
+  })
+}
 
 /**
  * Checks if the given error is a session expired error (403).
@@ -73,14 +73,14 @@ export const handleAxiosError = (error: unknown) => {
  * }
  */
 export const isSessionExpiredError = (error: unknown): boolean => {
-	if (error instanceof ErrorQuery) {
-		return error.statusCode === 403;
-	}
-	if (error instanceof Error) {
-		return error.message.includes("403");
-	}
-	return false;
-};
+  if (error instanceof ErrorQuery) {
+    return error.statusCode === 403
+  }
+  if (error instanceof Error) {
+    return error.message.includes('403')
+  }
+  return false
+}
 
 /**
  * Checks if the given error is an unauthorized error (401).
@@ -94,11 +94,11 @@ export const isSessionExpiredError = (error: unknown): boolean => {
  * }
  */
 export const isUnauthorizedError = (error: unknown): boolean => {
-	if (error instanceof ErrorQuery) {
-		return error.statusCode === 401;
-	}
-	if (error instanceof Error) {
-		return error.message.includes("401");
-	}
-	return false;
-};
+  if (error instanceof ErrorQuery) {
+    return error.statusCode === 401
+  }
+  if (error instanceof Error) {
+    return error.message.includes('401')
+  }
+  return false
+}

@@ -7,17 +7,17 @@
  * toStringOrNull(undefined) // null
  */
 export function toStringOrNull(
-	input: number | number[] | undefined | null,
+  input: number | number[] | undefined | null,
 ): string | null {
-	if (typeof input === "undefined" || input === undefined || input === null) {
-		return null;
-	}
+  if (typeof input === 'undefined' || input === undefined || input === null) {
+    return null
+  }
 
-	if (Array.isArray(input)) {
-		return input.length > 0 ? input[0].toString() : null;
-	}
+  if (Array.isArray(input)) {
+    return input.length > 0 ? input[0].toString() : null
+  }
 
-	return input.toString();
+  return input.toString()
 }
 
 /**
@@ -29,17 +29,17 @@ export function toStringOrNull(
  * toNumberOrNull(undefined) // null
  */
 export function toNumberOrNull(
-	input: string | string[] | undefined | null,
+  input: string | string[] | undefined | null,
 ): number | null {
-	if (typeof input === "undefined" || input === undefined || input === null) {
-		return null;
-	}
+  if (typeof input === 'undefined' || input === undefined || input === null) {
+    return null
+  }
 
-	if (Array.isArray(input)) {
-		return input.length > 0 ? Number(input[0]) : null;
-	}
+  if (Array.isArray(input)) {
+    return input.length > 0 ? Number(input[0]) : null
+  }
 
-	return Number(input);
+  return Number(input)
 }
 
 /**
@@ -53,23 +53,23 @@ export function toNumberOrNull(
  * formatNumber({ value: 3.14159, decimals: 3 }) // '3.142'
  */
 export function formatNumber({
-	value,
-	min,
-	max,
-	decimals = 2,
+  value,
+  min,
+  max,
+  decimals = 2,
 }: {
-	value: number;
-	min?: number;
-	max?: number;
-	decimals?: number;
+  value: number
+  min?: number
+  max?: number
+  decimals?: number
 }): string {
-	if (!Number.isFinite(value)) {
-		return "";
-	}
-	let clamped = value;
-	if (typeof min === "number") clamped = Math.max(clamped, min);
-	if (typeof max === "number") clamped = Math.min(clamped, max);
-	return clamped.toFixed(decimals);
+  if (!Number.isFinite(value)) {
+    return ''
+  }
+  let clamped = value
+  if (typeof min === 'number') clamped = Math.max(clamped, min)
+  if (typeof max === 'number') clamped = Math.min(clamped, max)
+  return clamped.toFixed(decimals)
 }
 
 /**
@@ -93,12 +93,12 @@ export function formatNumber({
  * isValidNumber({ value: undefined }) // false
  */
 export function isValidNumber({ value }: { value: unknown }): boolean {
-	if (typeof value === "number") {
-		return Number.isFinite(value);
-	}
-	if (typeof value === "string" && value.trim() !== "") {
-		const num = Number(value);
-		return Number.isFinite(num);
-	}
-	return false;
+  if (typeof value === 'number') {
+    return Number.isFinite(value)
+  }
+  if (typeof value === 'string' && value.trim() !== '') {
+    const num = Number(value)
+    return Number.isFinite(num)
+  }
+  return false
 }

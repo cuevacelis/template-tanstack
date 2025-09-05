@@ -1,10 +1,10 @@
-import { useTheme as useNextTheme } from "next-themes";
+import { useTheme as useNextTheme } from 'next-themes'
 
 export const useTheme = () => {
-	const nextTheme = useNextTheme();
+  const nextTheme = useNextTheme()
 
-	if (nextTheme === undefined)
-		throw new Error("useTheme must be used within a ThemeProvider");
+  if (nextTheme === undefined)
+    throw new Error('useTheme must be used within a ThemeProvider')
 
-	return nextTheme;
-};
+  return nextTheme
+}

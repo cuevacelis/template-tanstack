@@ -1,8 +1,8 @@
-import { read, utils } from "xlsx";
+import { read, utils } from 'xlsx'
 
 interface ImportExcelResult {
-	data: unknown[];
-	headers: string[];
+  data: unknown[]
+  headers: string[]
 }
 
 /**
@@ -15,51 +15,51 @@ interface ImportExcelResult {
  * importExcelFile(file).then(({ data, headers }) => { ... });
  */
 export async function importExcelFile(file: File): Promise<ImportExcelResult> {
-	return new Promise((resolve, reject) => {
-		const reader = new FileReader();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
 
-		reader.onload = (event) => {
-			try {
-				const binaryData = event.target?.result;
-				if (!binaryData) {
-					throw new Error("No se pudo leer el archivo");
-				}
+    reader.onload = (event) => {
+      try {
+        const binaryData = event.target?.result
+        if (!binaryData) {
+          throw new Error('No se pudo leer el archivo')
+        }
 
-				const workBook = read(binaryData, { type: "binary" });
-				const workSheetName = workBook.SheetNames[0];
-				const workSheet = workBook.Sheets[workSheetName];
+        const workBook = read(binaryData, { type: 'binary' })
+        const workSheetName = workBook.SheetNames[0]
+        const workSheet = workBook.Sheets[workSheetName]
 
-				// Formatear los números si es necesario
-				for (const cell in workSheet) {
-					if (
-						!cell.startsWith("!") &&
-						typeof (workSheet as Record<string, { v: unknown }>)[cell]?.v ===
-							"number"
-					) {
-						// Aquí podríamos aplicar formateo si es necesario
-					}
-				}
+        // Formatear los números si es necesario
+        for (const cell in workSheet) {
+          if (
+            !cell.startsWith('!') &&
+            typeof (workSheet as Record<string, { v: unknown }>)[cell]?.v ===
+              'number'
+          ) {
+            // Aquí podríamos aplicar formateo si es necesario
+          }
+        }
 
-				const fileData = utils.sheet_to_json(workSheet);
-				const dataHeaders = utils.sheet_to_json(workSheet, { header: 1 });
-				const headers = dataHeaders[0];
+        const fileData = utils.sheet_to_json(workSheet)
+        const dataHeaders = utils.sheet_to_json(workSheet, { header: 1 })
+        const headers = dataHeaders[0]
 
-				resolve({
-					data: fileData,
-					headers: headers as string[],
-				});
-			} catch (error) {
-				reject(error);
-			}
-		};
+        resolve({
+          data: fileData,
+          headers: headers as string[],
+        })
+      } catch (error) {
+        reject(error)
+      }
+    }
 
-		reader.onerror = (error) => {
-			console.log(error);
-			reject(new Error("Error al leer el archivo"));
-		};
+    reader.onerror = (error) => {
+      console.log(error)
+      reject(new Error('Error al leer el archivo'))
+    }
 
-		reader.readAsBinaryString(file);
-	});
+    reader.readAsBinaryString(file)
+  })
 }
 
 /**
@@ -71,10 +71,10 @@ export async function importExcelFile(file: File): Promise<ImportExcelResult> {
  * isValidExcelFile(file) // true or false
  */
 export function isValidExcelFile(
-	file: File,
-	extensions: string[] = ["xlsx", "xls", "csv"],
+  file: File,
+  extensions: string[] = ['xlsx', 'xls', 'csv'],
 ): boolean {
-	const parts = file.name.split(".");
-	const extension = parts[parts.length - 1].toLowerCase();
-	return extensions.includes(extension);
+  const parts = file.name.split('.')
+  const extension = parts[parts.length - 1].toLowerCase()
+  return extensions.includes(extension)
 }

@@ -1,23 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { 
-  BarChart3, 
-  Users, 
-  TrendingUp, 
-  DollarSign, 
+import {
+  BarChart3,
+  Users,
+  TrendingUp,
+  DollarSign,
   Activity,
   Calendar,
   Bell,
-  Settings
+  Settings,
 } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Progress } from '@/components/ui/progress'
@@ -66,9 +66,7 @@ function RouteComponent() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Suscripciones
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Suscripciones</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -92,9 +90,7 @@ function RouteComponent() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              Activos Ahora
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">Activos Ahora</CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -114,7 +110,7 @@ function RouteComponent() {
           <TabsTrigger value="reports">Reportes</TabsTrigger>
           <TabsTrigger value="notifications">Notificaciones</TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="overview" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
             <Card className="col-span-4">
@@ -130,7 +126,8 @@ function RouteComponent() {
                         Crecimiento este mes
                       </p>
                       <p className="text-sm text-muted-foreground">
-                        Las ventas han aumentado un 25% comparado con el mes anterior
+                        Las ventas han aumentado un 25% comparado con el mes
+                        anterior
                       </p>
                     </div>
                   </div>
@@ -144,7 +141,7 @@ function RouteComponent() {
                 </div>
               </CardContent>
             </Card>
-            
+
             <Card className="col-span-3">
               <CardHeader>
                 <CardTitle>Actividad Reciente</CardTitle>
@@ -160,7 +157,9 @@ function RouteComponent() {
                       <AvatarFallback>OM</AvatarFallback>
                     </Avatar>
                     <div className="ml-4 space-y-1">
-                      <p className="text-sm font-medium leading-none">Olivia Martin</p>
+                      <p className="text-sm font-medium leading-none">
+                        Olivia Martin
+                      </p>
                       <p className="text-sm text-muted-foreground">
                         olivia.martin@email.com
                       </p>
@@ -173,8 +172,12 @@ function RouteComponent() {
                       <AvatarFallback>JL</AvatarFallback>
                     </Avatar>
                     <div className="ml-4 space-y-1">
-                      <p className="text-sm font-medium leading-none">Jackson Lee</p>
-                      <p className="text-sm text-muted-foreground">jackson.lee@email.com</p>
+                      <p className="text-sm font-medium leading-none">
+                        Jackson Lee
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        jackson.lee@email.com
+                      </p>
                     </div>
                     <div className="ml-auto font-medium">+$39.00</div>
                   </div>
@@ -184,7 +187,9 @@ function RouteComponent() {
                       <AvatarFallback>IN</AvatarFallback>
                     </Avatar>
                     <div className="ml-4 space-y-1">
-                      <p className="text-sm font-medium leading-none">Isabella Nguyen</p>
+                      <p className="text-sm font-medium leading-none">
+                        Isabella Nguyen
+                      </p>
                       <p className="text-sm text-muted-foreground">
                         isabella.nguyen@email.com
                       </p>
@@ -196,7 +201,7 @@ function RouteComponent() {
             </Card>
           </div>
         </TabsContent>
-        
+
         <TabsContent value="analytics" className="space-y-4">
           <Card>
             <CardHeader>
@@ -222,7 +227,9 @@ function RouteComponent() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-sm font-medium">Satisfacción del Cliente</h4>
+                  <h4 className="text-sm font-medium">
+                    Satisfacción del Cliente
+                  </h4>
                   <div className="flex items-center space-x-2">
                     <Progress value={94} className="flex-1" />
                     <Badge variant="secondary">94%</Badge>
@@ -239,7 +246,7 @@ function RouteComponent() {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
         <TabsContent value="reports" className="space-y-4">
           <Card>
             <CardHeader>
@@ -251,9 +258,7 @@ function RouteComponent() {
             <CardContent>
               <div className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
-                  <Button className="w-full">
-                    Reporte de Ventas
-                  </Button>
+                  <Button className="w-full">Reporte de Ventas</Button>
                   <Button variant="outline" className="w-full">
                     Reporte de Usuarios
                   </Button>
@@ -268,7 +273,7 @@ function RouteComponent() {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
         <TabsContent value="notifications" className="space-y-4">
           <Card>
             <CardHeader>
@@ -292,7 +297,9 @@ function RouteComponent() {
                 <div className="flex items-center space-x-4 rounded-md border p-4">
                   <Users className="h-4 w-4" />
                   <div className="flex-1 space-y-1">
-                    <p className="text-sm font-medium">Nuevo usuario registrado</p>
+                    <p className="text-sm font-medium">
+                      Nuevo usuario registrado
+                    </p>
                     <p className="text-sm text-muted-foreground">
                       Un nuevo usuario se ha unido a la plataforma
                     </p>

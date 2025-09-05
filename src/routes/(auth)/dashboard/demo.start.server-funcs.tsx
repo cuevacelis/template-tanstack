@@ -33,7 +33,9 @@ const addTodo = createServerFn({ method: 'POST' })
     return todos
   })
 
-export const Route = createFileRoute('/(auth)/dashboard/demo/start/server-funcs')({
+export const Route = createFileRoute(
+  '/(auth)/dashboard/demo/start/server-funcs',
+)({
   component: Home,
   loader: async () => await getTodos(),
 })

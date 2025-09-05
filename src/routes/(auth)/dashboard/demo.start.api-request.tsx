@@ -6,7 +6,9 @@ function getNames() {
   return fetch('/api/demo-names').then((res) => res.json())
 }
 
-export const Route = createFileRoute('/(auth)/dashboard/demo/start/api-request')({
+export const Route = createFileRoute(
+  '/(auth)/dashboard/demo/start/api-request',
+)({
   component: Home,
 })
 

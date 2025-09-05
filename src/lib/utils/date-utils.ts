@@ -1,4 +1,4 @@
-import { DateTime } from "luxon";
+import { DateTime } from 'luxon'
 
 /**
  * Formats the current date and time in real-time for display purposes.
@@ -10,10 +10,10 @@ import { DateTime } from "luxon";
  * formatCurrentDateTime('HH:mm:ss') // '11:30:45'
  */
 export function formatCurrentDateTime(
-	format = "dd/MM/yyyy HH:mm:ss z",
-	timezone = "America/Lima",
+  format = 'dd/MM/yyyy HH:mm:ss z',
+  timezone = 'America/Lima',
 ): string {
-	return DateTime.now().setZone(timezone).toFormat(format);
+  return DateTime.now().setZone(timezone).toFormat(format)
 }
 
 /**
@@ -24,23 +24,23 @@ export function formatCurrentDateTime(
  * formatDateTime({ utcDate: '2023-01-01T12:00:00Z', userTimezone: 'America/Lima', format: 'HH:mm' })
  */
 export function formatDateTime({
-	utcDate,
-	userTimezone = DateTime.local().zoneName,
-	format = "HH:mm",
+  utcDate,
+  userTimezone = DateTime.local().zoneName,
+  format = 'HH:mm',
 }: {
-	utcDate?: string;
-	userTimezone?: string;
-	format?: string;
+  utcDate?: string
+  userTimezone?: string
+  format?: string
 }): string {
-	const timezone = userTimezone || DateTime.local().zoneName;
-	let limaDateTime: DateTime;
-	if (utcDate) {
-		limaDateTime = DateTime.fromISO(utcDate, { zone: "America/Lima" });
-	} else {
-		limaDateTime = DateTime.now().setZone("America/Lima");
-	}
-	const userDateTime = limaDateTime.setZone(timezone);
-	return userDateTime.toFormat(format || "HH:mm");
+  const timezone = userTimezone || DateTime.local().zoneName
+  let limaDateTime: DateTime
+  if (utcDate) {
+    limaDateTime = DateTime.fromISO(utcDate, { zone: 'America/Lima' })
+  } else {
+    limaDateTime = DateTime.now().setZone('America/Lima')
+  }
+  const userDateTime = limaDateTime.setZone(timezone)
+  return userDateTime.toFormat(format || 'HH:mm')
 }
 
 /**
@@ -52,36 +52,36 @@ export function formatDateTime({
  * formatDateForInput({ utcDate: '2023-01-01T12:00:00Z' })
  */
 export function formatDateForInput({
-	utcDate,
-	userTimezone,
-	format = "yyyy-MM-dd",
+  utcDate,
+  userTimezone,
+  format = 'yyyy-MM-dd',
 }: {
-	utcDate: string;
-	userTimezone?: string;
-	format?: string;
+  utcDate: string
+  userTimezone?: string
+  format?: string
 }): string {
-	let dateTime: DateTime;
-	const timezone = userTimezone ?? DateTime.local().zoneName;
+  let dateTime: DateTime
+  const timezone = userTimezone ?? DateTime.local().zoneName
 
-	dateTime = DateTime.fromISO(utcDate, { zone: "America/Lima" }).setZone(
-		timezone,
-	);
-	if (!dateTime.isValid) {
-		dateTime = DateTime.fromSQL(utcDate, { zone: "America/Lima" }).setZone(
-			timezone,
-		);
-	}
-	if (!dateTime.isValid) {
-		dateTime = DateTime.fromRFC2822(utcDate, { zone: "America/Lima" }).setZone(
-			timezone,
-		);
-	}
+  dateTime = DateTime.fromISO(utcDate, { zone: 'America/Lima' }).setZone(
+    timezone,
+  )
+  if (!dateTime.isValid) {
+    dateTime = DateTime.fromSQL(utcDate, { zone: 'America/Lima' }).setZone(
+      timezone,
+    )
+  }
+  if (!dateTime.isValid) {
+    dateTime = DateTime.fromRFC2822(utcDate, { zone: 'America/Lima' }).setZone(
+      timezone,
+    )
+  }
 
-	if (!dateTime.isValid) {
-		return "";
-	}
+  if (!dateTime.isValid) {
+    return ''
+  }
 
-	return dateTime.toFormat(format);
+  return dateTime.toFormat(format)
 }
 
 /**
@@ -92,8 +92,8 @@ export function formatDateForInput({
  * isCurrentDay('2023-01-01') // true or false
  */
 export function isCurrentDay(date?: string) {
-	const dateTime = date ? DateTime.fromISO(date) : DateTime.local();
-	return dateTime.hasSame(DateTime.now(), "day");
+  const dateTime = date ? DateTime.fromISO(date) : DateTime.local()
+  return dateTime.hasSame(DateTime.now(), 'day')
 }
 
 /**
@@ -105,12 +105,12 @@ export function isCurrentDay(date?: string) {
  * calculateDaysDifference('2023-01-10', 'America/Lima')
  */
 export function calculateDaysDifference(
-	isoDate: string,
-	timezone: string = DateTime.local().zoneName,
+  isoDate: string,
+  timezone: string = DateTime.local().zoneName,
 ): number {
-	const fechaObjetivo = DateTime.fromISO(isoDate).setZone(timezone);
-	const fechaActual = DateTime.now().setZone(timezone);
-	return Math.ceil(fechaObjetivo.diff(fechaActual, "days").days);
+  const fechaObjetivo = DateTime.fromISO(isoDate).setZone(timezone)
+  const fechaActual = DateTime.now().setZone(timezone)
+  return Math.ceil(fechaObjetivo.diff(fechaActual, 'days').days)
 }
 
 /**
@@ -122,17 +122,17 @@ export function calculateDaysDifference(
  * formatLongDateTime('2023-01-01 12:00:00', 'America/Lima')
  */
 export function formatLongDateTime(
-	utcDate: string,
-	userTimezone?: string,
+  utcDate: string,
+  userTimezone?: string,
 ): { fecha: string; hora: string } {
-	const timezone = userTimezone ?? DateTime.local().zoneName;
-	const limaDateTime = DateTime.fromSQL(utcDate, { zone: "America/Lima" });
-	const userDateTime = limaDateTime.setZone(timezone).setLocale("es");
+  const timezone = userTimezone ?? DateTime.local().zoneName
+  const limaDateTime = DateTime.fromSQL(utcDate, { zone: 'America/Lima' })
+  const userDateTime = limaDateTime.setZone(timezone).setLocale('es')
 
-	return {
-		fecha: userDateTime.toFormat("dd 'de' MMMM 'de' yyyy"),
-		hora: userDateTime.toFormat("HH:mm:ss 'hrs'"),
-	};
+  return {
+    fecha: userDateTime.toFormat("dd 'de' MMMM 'de' yyyy"),
+    hora: userDateTime.toFormat("HH:mm:ss 'hrs'"),
+  }
 }
 
 /**
@@ -143,29 +143,29 @@ export function formatLongDateTime(
  * getTemporalStatus({ date: '01/01/2023', timeZone: 'America/Lima' })
  */
 export function getTemporalStatus({
-	date,
-	timeZone = DateTime.local().zoneName,
+  date,
+  timeZone = DateTime.local().zoneName,
 }: {
-	date: string;
-	timeZone?: string;
-}): "PAST" | "PRESENT" | "FUTURE" {
-	const fechaObjetivo = DateTime.fromFormat(date, "dd/MM/yyyy")
-		.setZone(timeZone)
-		.startOf("day");
-	const ahora = DateTime.now().setZone(timeZone).startOf("day");
+  date: string
+  timeZone?: string
+}): 'PAST' | 'PRESENT' | 'FUTURE' {
+  const fechaObjetivo = DateTime.fromFormat(date, 'dd/MM/yyyy')
+    .setZone(timeZone)
+    .startOf('day')
+  const ahora = DateTime.now().setZone(timeZone).startOf('day')
 
-	if (!fechaObjetivo.isValid) {
-		console.error("Fecha inválida:", date);
-		return "PAST";
-	}
+  if (!fechaObjetivo.isValid) {
+    console.error('Fecha inválida:', date)
+    return 'PAST'
+  }
 
-	const diffDays = fechaObjetivo.diff(ahora, "days").days;
+  const diffDays = fechaObjetivo.diff(ahora, 'days').days
 
-	if (diffDays === 0) {
-		return "PRESENT";
-	}
+  if (diffDays === 0) {
+    return 'PRESENT'
+  }
 
-	return diffDays < 0 ? "PAST" : "FUTURE";
+  return diffDays < 0 ? 'PAST' : 'FUTURE'
 }
 
 /**
@@ -176,29 +176,29 @@ export function getTemporalStatus({
  * isDateInRange({ date: '2024-06-10', startDate: '2024-06-01', endDate: '2024-06-30' })
  */
 export function isDateInRange({
-	date,
-	startDate,
-	endDate,
-	ignoreTime = false,
+  date,
+  startDate,
+  endDate,
+  ignoreTime = false,
 }: {
-	date: string;
-	startDate: string;
-	endDate: string;
-	ignoreTime?: boolean;
+  date: string
+  startDate: string
+  endDate: string
+  ignoreTime?: boolean
 }): boolean {
-	if (!date || !startDate || !endDate) return false;
+  if (!date || !startDate || !endDate) return false
 
-	let dt = DateTime.fromISO(date);
-	let start = DateTime.fromISO(startDate);
-	let end = DateTime.fromISO(endDate);
+  let dt = DateTime.fromISO(date)
+  let start = DateTime.fromISO(startDate)
+  let end = DateTime.fromISO(endDate)
 
-	if (ignoreTime) {
-		dt = dt.startOf("day");
-		start = start.startOf("day");
-		end = end.startOf("day");
-	}
+  if (ignoreTime) {
+    dt = dt.startOf('day')
+    start = start.startOf('day')
+    end = end.startOf('day')
+  }
 
-	if (!dt.isValid || !start.isValid || !end.isValid) return false;
+  if (!dt.isValid || !start.isValid || !end.isValid) return false
 
-	return dt >= start && dt < end;
+  return dt >= start && dt < end
 }

@@ -6,7 +6,7 @@
  * capitalizeFirstLetter('hello') // 'Hello'
  */
 export function capitalizeFirstLetter(str: string) {
-	return str.charAt(0).toUpperCase() + str.slice(1);
+  return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
 /**
@@ -19,17 +19,17 @@ export function capitalizeFirstLetter(str: string) {
  * convertToStringOrNull(undefined) // null
  */
 export function convertToStringOrNull(
-	input: string | string[] | undefined | null,
+  input: string | string[] | undefined | null,
 ): string | null {
-	if (typeof input === "undefined" || input === undefined || input === null) {
-		return null;
-	}
+  if (typeof input === 'undefined' || input === undefined || input === null) {
+    return null
+  }
 
-	if (Array.isArray(input)) {
-		return input.length > 0 ? input[0] : null;
-	}
+  if (Array.isArray(input)) {
+    return input.length > 0 ? input[0] : null
+  }
 
-	return input;
+  return input
 }
 
 /**
@@ -40,7 +40,7 @@ export function convertToStringOrNull(
  * removeAccentsAndDiacritics('canción') // 'cancion'
  */
 export function removeAccentsAndDiacritics(str: string): string {
-	return str.normalize("NFD").replace(/\p{Diacritic}/gu, "");
+  return str.normalize('NFD').replace(/\p{Diacritic}/gu, '')
 }
 
 /**
@@ -51,11 +51,11 @@ export function removeAccentsAndDiacritics(str: string): string {
  * capitalizeFirstLetterOfEachWord('hola mundo') // 'Hola Mundo'
  */
 export function capitalizeFirstLetterOfEachWord(sentence: string) {
-	return sentence
-		.toLowerCase()
-		.split(" ")
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(" ");
+  return sentence
+    .toLowerCase()
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
 }
 
 /**
@@ -67,18 +67,18 @@ export function capitalizeFirstLetterOfEachWord(sentence: string) {
  * getInitialsFromFullName('Ana') // 'AN'
  */
 export function getInitialsFromFullName(fullName: string): string {
-	const palabras = fullName.split(" ").filter((palabra) => palabra.length > 0);
+  const palabras = fullName.split(' ').filter((palabra) => palabra.length > 0)
 
-	let iniciales: string[] = [];
+  let iniciales: string[] = []
 
-	if (palabras.length === 1) {
-		iniciales = [
-			palabras[0][0].toUpperCase(),
-			palabras[0][1] ? palabras[0][1].toUpperCase() : "",
-		];
-	} else {
-		iniciales = palabras.slice(0, 2).map((palabra) => palabra[0].toUpperCase());
-	}
+  if (palabras.length === 1) {
+    iniciales = [
+      palabras[0][0].toUpperCase(),
+      palabras[0][1] ? palabras[0][1].toUpperCase() : '',
+    ]
+  } else {
+    iniciales = palabras.slice(0, 2).map((palabra) => palabra[0].toUpperCase())
+  }
 
-	return iniciales.join("");
+  return iniciales.join('')
 }

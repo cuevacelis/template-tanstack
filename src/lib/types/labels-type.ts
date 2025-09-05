@@ -4,7 +4,7 @@
  * @example
  * const module: TModuleTypes = 'dashboard';
  */
-export type TModuleTypes = string;
+export type TModuleTypes = string
 
 /**
  * Represents the type for submodule identifiers.
@@ -12,4 +12,4 @@ export type TModuleTypes = string;
  * @example
  * const submodule: TSubmodulesTypes = 'settings';
  */
-export type TSubmodulesTypes = string;
+export type TSubmodulesTypes = string

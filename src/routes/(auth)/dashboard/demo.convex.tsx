@@ -1,12 +1,12 @@
 import { Suspense, useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { useQuery, useMutation } from 'convex/react'
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -22,13 +22,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { 
-  Package, 
-  DollarSign, 
+import {
+  Package,
+  DollarSign,
   ShoppingCart,
   Plus,
   Grid3X3,
-  List
+  List,
 } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
@@ -43,7 +43,7 @@ function NewProductDialog() {
   const [title, setTitle] = useState('')
   const [price, setPrice] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  
+
   const createProduct = useMutation(api.products.create)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -57,7 +57,7 @@ function NewProductDialog() {
         price: parseFloat(price),
         imageId: 'placeholder', // Por ahora usamos un placeholder
       })
-      
+
       // Limpiar formulario y cerrar diálogo
       setTitle('')
       setPrice('')
@@ -125,7 +125,10 @@ function NewProductDialog() {
             >
               Cancelar
             </Button>
-            <Button type="submit" disabled={isSubmitting || !title.trim() || !price.trim()}>
+            <Button
+              type="submit"
+              disabled={isSubmitting || !title.trim() || !price.trim()}
+            >
               {isSubmitting ? 'Guardando...' : 'Guardar Producto'}
             </Button>
           </DialogFooter>
@@ -179,7 +182,10 @@ function ProductsGrid() {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {products.map((product) => (
-        <Card key={product._id} className="group hover:shadow-lg transition-shadow">
+        <Card
+          key={product._id}
+          className="group hover:shadow-lg transition-shadow"
+        >
           <CardHeader className="pb-3">
             <div className="flex items-start justify-between">
               <div className="flex-1">
@@ -202,7 +208,7 @@ function ProductsGrid() {
               <div className="aspect-square bg-muted rounded-lg flex items-center justify-center">
                 <Package className="h-8 w-8 text-muted-foreground" />
               </div>
-              
+
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold">
                   ${product.price.toFixed(2)}
@@ -273,7 +279,9 @@ function ProductsList() {
           </div>
           <div>
             <p className="text-sm text-muted-foreground">Precio promedio</p>
-            <p className="text-2xl font-bold">${(totalValue / products.length).toFixed(2)}</p>
+            <p className="text-2xl font-bold">
+              ${(totalValue / products.length).toFixed(2)}
+            </p>
           </div>
         </CardContent>
       </Card>
@@ -292,9 +300,7 @@ function ProductsList() {
               <p className="text-xs text-muted-foreground">ID: {product._id}</p>
             </div>
             <div className="flex items-center space-x-2">
-              <Badge variant="outline">
-                ${product.price.toFixed(2)}
-              </Badge>
+              <Badge variant="outline">${product.price.toFixed(2)}</Badge>
               <Button size="sm" variant="outline">
                 <ShoppingCart className="h-4 w-4" />
               </Button>
@@ -333,11 +339,11 @@ function App() {
               <span>Vista de Lista</span>
             </TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="grid" className="space-y-4">
             <ProductsGrid />
           </TabsContent>
-          
+
           <TabsContent value="list" className="space-y-4">
             <ProductsList />
           </TabsContent>

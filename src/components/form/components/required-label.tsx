@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils/class-utils";
+import type { ReactNode } from 'react'
+import { Label } from '@/components/ui/label'
+import { cn } from '@/lib/utils/class-utils'
 
 /**
  * Props para el componente RequiredLabel.
@@ -14,10 +14,10 @@ import { cn } from "@/lib/utils/class-utils";
  * Además, acepta todas las props estándar de <Label>.
  */
 interface RequiredLabelProps extends React.ComponentProps<typeof Label> {
-	children: ReactNode;
-	containerClassName?: string;
-	hideAsterisk?: boolean;
-	asteriskClassName?: string;
+  children: ReactNode
+  containerClassName?: string
+  hideAsterisk?: boolean
+  asteriskClassName?: string
 }
 
 /**
@@ -37,31 +37,31 @@ interface RequiredLabelProps extends React.ComponentProps<typeof Label> {
  * @returns Un <span> con el label y el asterisco si corresponde.
  */
 export function RequiredLabel(props: RequiredLabelProps) {
-	const {
-		children,
-		containerClassName,
-		hideAsterisk,
-		asteriskClassName,
-		...labelProps
-	} = props;
-	return (
-		<span
-			className={cn("inline-flex items-center gap-0.5", containerClassName)}
-		>
-			<Label {...labelProps}>{children}</Label>
-			{!hideAsterisk && (
-				<span
-					className={cn(
-						"text-destructive text-md leading-none h-[1em] flex items-center",
-						asteriskClassName,
-						{ invisible: hideAsterisk },
-					)}
-					aria-hidden="true"
-				>
-					*
-				</span>
-			)}
-			{!hideAsterisk && <span className="sr-only">(required)</span>}
-		</span>
-	);
+  const {
+    children,
+    containerClassName,
+    hideAsterisk,
+    asteriskClassName,
+    ...labelProps
+  } = props
+  return (
+    <span
+      className={cn('inline-flex items-center gap-0.5', containerClassName)}
+    >
+      <Label {...labelProps}>{children}</Label>
+      {!hideAsterisk && (
+        <span
+          className={cn(
+            'text-destructive text-md leading-none h-[1em] flex items-center',
+            asteriskClassName,
+            { invisible: hideAsterisk },
+          )}
+          aria-hidden="true"
+        >
+          *
+        </span>
+      )}
+      {!hideAsterisk && <span className="sr-only">(required)</span>}
+    </span>
+  )
 }

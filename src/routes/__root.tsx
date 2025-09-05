@@ -11,6 +11,10 @@ import appCss from '../styles/index.css?url'
 import type { QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 import { ThemeProvider } from '@/context/theme/theme-provider'
+import {
+  ErrorBoundary,
+  AuthErrorFallback,
+} from '@/components/ui/error-boundary'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -48,28 +52,30 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <ClerkProvider>
-          <ThemeProvider defaultTheme="system">
-            <ConvexProvider>
-              {children}
-              <TanStackDevtools
-                config={{
-                  position: 'bottom-left',
-                }}
-                plugins={[
-                  {
-                    name: 'Tanstack Router',
-                    render: <TanStackRouterDevtoolsPanel />,
-                  },
-                  {
-                    name: 'Tanstack Query',
-                    render: <ReactQueryDevtoolsPanel />,
-                  },
-                ]}
-              />
-            </ConvexProvider>
-          </ThemeProvider>
-        </ClerkProvider>
+        <ErrorBoundary fallback={AuthErrorFallback}>
+          <ClerkProvider>
+            <ThemeProvider defaultTheme="system">
+              <ConvexProvider>
+                {children}
+                <TanStackDevtools
+                  config={{
+                    position: 'bottom-left',
+                  }}
+                  plugins={[
+                    {
+                      name: 'Tanstack Router',
+                      render: <TanStackRouterDevtoolsPanel />,
+                    },
+                    {
+                      name: 'Tanstack Query',
+                      render: <ReactQueryDevtoolsPanel />,
+                    },
+                  ]}
+                />
+              </ConvexProvider>
+            </ThemeProvider>
+          </ClerkProvider>
+        </ErrorBoundary>
         <Scripts />
       </body>
     </html>

@@ -3,6 +3,7 @@ import useLocalStorage from 'react-use/lib/useLocalStorage'
 import { SidebarLoggedComponent } from '@/routes/(auth)/-components/sidebar-logged/sidebar-logged'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { formatDateTime } from '@/lib/utils/date-utils'
+import { AuthGuard, createAuthGuard } from '@/hooks/use-auth-guard'
 
 /**
  * Defines the route for pages that require authentication.
@@ -10,6 +11,7 @@ import { formatDateTime } from '@/lib/utils/date-utils'
  * Handles authentication and permission checks before loading the route.
  */
 export const Route = createFileRoute('/(auth)')({
+  beforeLoad: createAuthGuard(),
   component: LayoutAuth,
 })
 
@@ -24,27 +26,29 @@ function LayoutAuth() {
     useLocalStorage<boolean>('isSidebarOpen')
 
   return (
-    <SidebarProvider
-      open={isSidebarOpen}
-      onOpenChange={(open) => {
-        setIsSidebarOpen(open)
-      }}
-    >
-      <SidebarLoggedComponent />
-      <SidebarInset className="bg-transparent mx-1 lg:max-w-[calc(100vw-var(--sidebar-width)-20px)] peer-data-[state=collapsed]:max-w-[calc(100vw-var(--sidebar-width-icon)-40px)]">
-        <Outlet />
-        <footer className="mt-4 w-full p-2 text-center text-sm bg-linear-to-t from-gray-100 via-gray-100 to-transparent dark:from-transparent dark:via-transparent dark:to-transparent">
-          <div className="relative">
-            <p className="text-sm text-muted-foreground">
-              ©
-              {formatDateTime({
-                format: 'yyyy',
-              })}{' '}
-              Template TanStack
-            </p>
-          </div>
-        </footer>
-      </SidebarInset>
-    </SidebarProvider>
+    <AuthGuard>
+      <SidebarProvider
+        open={isSidebarOpen}
+        onOpenChange={(open) => {
+          setIsSidebarOpen(open)
+        }}
+      >
+        <SidebarLoggedComponent />
+        <SidebarInset className="bg-transparent mx-1 lg:max-w-[calc(100vw-var(--sidebar-width)-20px)] peer-data-[state=collapsed]:max-w-[calc(100vw-var(--sidebar-width-icon)-40px)]">
+          <Outlet />
+          <footer className="mt-4 w-full p-2 text-center text-sm bg-linear-to-t from-gray-100 via-gray-100 to-transparent dark:from-transparent dark:via-transparent dark:to-transparent">
+            <div className="relative">
+              <p className="text-sm text-muted-foreground">
+                ©
+                {formatDateTime({
+                  format: 'yyyy',
+                })}{' '}
+                Template TanStack
+              </p>
+            </div>
+          </footer>
+        </SidebarInset>
+      </SidebarProvider>
+    </AuthGuard>
   )
 }

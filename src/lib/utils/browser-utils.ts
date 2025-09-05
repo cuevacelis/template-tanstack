@@ -21,22 +21,22 @@
  * @returns {string} The detected operating system name.
  */
 export function getSO(): string {
-	const ua = window.navigator.userAgent.toLowerCase();
-	const platform = window.navigator.platform.toLowerCase();
+  const ua = window.navigator.userAgent.toLowerCase()
+  const platform = window.navigator.platform.toLowerCase()
 
-	if (platform.includes("win")) return "Windows";
-	if (ua.includes("android")) return "Android";
-	if (ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipod"))
-		return "iOS";
-	if (platform.includes("mac")) {
-		// If Mac but user agent says iPhone/iPad, it's iOS
-		if (ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipod"))
-			return "iOS";
-		return "Macintosh";
-	}
-	if (platform.includes("linux")) return "Linux";
-	if (ua.includes("cros")) return "Chrome OS";
-	return "Unknown";
+  if (platform.includes('win')) return 'Windows'
+  if (ua.includes('android')) return 'Android'
+  if (ua.includes('iphone') || ua.includes('ipad') || ua.includes('ipod'))
+    return 'iOS'
+  if (platform.includes('mac')) {
+    // If Mac but user agent says iPhone/iPad, it's iOS
+    if (ua.includes('iphone') || ua.includes('ipad') || ua.includes('ipod'))
+      return 'iOS'
+    return 'Macintosh'
+  }
+  if (platform.includes('linux')) return 'Linux'
+  if (ua.includes('cros')) return 'Chrome OS'
+  return 'Unknown'
 }
 
 /**
@@ -62,33 +62,33 @@ export function getSO(): string {
  * @returns {string} The detected browser name and version, or 'Unknown browser' if not found.
  */
 export function getBrowserInfo(): string {
-	const ua = navigator.userAgent;
-	let tem: RegExpMatchArray | null;
+  const ua = navigator.userAgent
+  let tem: RegExpMatchArray | null
 
-	// Detect Edge and Opera first
-	tem = /\b(Edg|OPR)\/(\d+(\.\d+)+)/.exec(ua);
-	if (tem) {
-		const browser = tem[1] === "OPR" ? "Opera" : "Edge";
-		return `${browser} ${tem[2]}`;
-	}
+  // Detect Edge and Opera first
+  tem = /\b(Edg|OPR)\/(\d+(\.\d+)+)/.exec(ua)
+  if (tem) {
+    const browser = tem[1] === 'OPR' ? 'Opera' : 'Edge'
+    return `${browser} ${tem[2]}`
+  }
 
-	// Safari
-	if (ua.includes("safari") && /version\/(\d+)/i.test(ua)) {
-		tem = /version\/(\d+)/i.exec(ua);
-		if (tem) return `Safari ${tem[1]}`;
-	}
+  // Safari
+  if (ua.includes('safari') && /version\/(\d+)/i.test(ua)) {
+    tem = /version\/(\d+)/i.exec(ua)
+    if (tem) return `Safari ${tem[1]}`
+  }
 
-	// Chrome
-	tem = /chrome\/(\d+(\.\d+)+)/i.exec(ua);
-	if (tem) return `Chrome ${tem[1]}`;
+  // Chrome
+  tem = /chrome\/(\d+(\.\d+)+)/i.exec(ua)
+  if (tem) return `Chrome ${tem[1]}`
 
-	// Firefox
-	tem = /firefox\/(\d+(\.\d+)+)/i.exec(ua);
-	if (tem) return `Firefox ${tem[1]}`;
+  // Firefox
+  tem = /firefox\/(\d+(\.\d+)+)/i.exec(ua)
+  if (tem) return `Firefox ${tem[1]}`
 
-	// Internet Explorer
-	tem = /msie (\d+)/i.exec(ua);
-	if (tem) return `IE ${tem[1]}`;
+  // Internet Explorer
+  tem = /msie (\d+)/i.exec(ua)
+  if (tem) return `IE ${tem[1]}`
 
-	return "Unknown browser";
+  return 'Unknown browser'
 }

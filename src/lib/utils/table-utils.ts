@@ -3,4 +3,4 @@
  * @example
  * initialDataTable // []
  */
-export const initialDataTable = [];
+export const initialDataTable = []

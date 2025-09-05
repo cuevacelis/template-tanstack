@@ -1,4 +1,4 @@
-import type { IModule } from "@/hooks/services/sidebar-modules/use-sidebar-modules.query";
+import type { IModule } from '@/hooks/services/sidebar-modules/use-sidebar-modules.query'
 
 /**
  * Props for searching the current module in the sidebar.
@@ -6,12 +6,12 @@ import type { IModule } from "@/hooks/services/sidebar-modules/use-sidebar-modul
  * @property options Search options: title, subModule, and url.
  */
 interface IPropsCurrentModule {
-	dataModules: IModule[] | undefined;
-	options: {
-		title: string;
-		subModule?: string;
-		url: string;
-	};
+  dataModules: IModule[] | undefined
+  options: {
+    title: string
+    subModule?: string
+    url: string
+  }
 }
 
 /**
@@ -28,18 +28,18 @@ interface IPropsCurrentModule {
  * });
  */
 export function getCurrentModuleOfSidebar({
-	dataModules,
-	options,
+  dataModules,
+  options,
 }: IPropsCurrentModule) {
-	if (!dataModules) return undefined;
-	const normalizedTitle = options.title.toLowerCase();
-	return dataModules.find((module) => {
-		const matchesTitle = module.c_dmodulo.toLowerCase() === normalizedTitle;
-		const matchesUrl = options.url
-			? module.c_tobjeto?.startsWith(options.url)
-			: true;
-		return matchesTitle && matchesUrl;
-	});
+  if (!dataModules) return undefined
+  const normalizedTitle = options.title.toLowerCase()
+  return dataModules.find((module) => {
+    const matchesTitle = module.c_dmodulo.toLowerCase() === normalizedTitle
+    const matchesUrl = options.url
+      ? module.c_tobjeto?.startsWith(options.url)
+      : true
+    return matchesTitle && matchesUrl
+  })
 }
 
 /**
@@ -53,24 +53,24 @@ export function getCurrentModuleOfSidebar({
  * // routes = ["/dashboard", "/perfil", "/dashboard/finanzas", ...]
  */
 export function extractSidebarRoutesRecursively(modules: IModule[]): string[] {
-	const routes = new Set<string>([]); // Static routes
+  const routes = new Set<string>([]) // Static routes
 
-	function extractRoutes(module: IModule) {
-		if (module.c_tobjeto) {
-			routes.add(module.c_tobjeto);
-		}
-		if (module.submodulos?.length) {
-			for (const submodule of module.submodulos) {
-				extractRoutes(submodule as IModule);
-			}
-		}
-	}
+  function extractRoutes(module: IModule) {
+    if (module.c_tobjeto) {
+      routes.add(module.c_tobjeto)
+    }
+    if (module.submodulos?.length) {
+      for (const submodule of module.submodulos) {
+        extractRoutes(submodule as IModule)
+      }
+    }
+  }
 
-	for (const module of modules) {
-		extractRoutes(module);
-	}
+  for (const module of modules) {
+    extractRoutes(module)
+  }
 
-	return Array.from(routes);
+  return Array.from(routes)
 }
 
 /**
@@ -86,8 +86,8 @@ export function extractSidebarRoutesRecursively(modules: IModule[]): string[] {
  * arePathsEqual('/dashboard', '/perfil') // false
  */
 export function arePathsEqual(path1: string, path2: string): boolean {
-	const normalizePath = (path: string) => path.replace(/\/+$/, "");
-	return normalizePath(path1) === normalizePath(path2);
+  const normalizePath = (path: string) => path.replace(/\/+$/, '')
+  return normalizePath(path1) === normalizePath(path2)
 }
 
 /**
@@ -105,19 +105,19 @@ export function arePathsEqual(path1: string, path2: string): boolean {
  * // hasAccessCurrent = true if the current URL exists in sidebar modules
  */
 export function isPathInSidebarModules({
-	targetPath,
-	modules,
+  targetPath,
+  modules,
 }: {
-	targetPath?: string;
-	modules: IModule[] | undefined;
+  targetPath?: string
+  modules: IModule[] | undefined
 }): boolean {
-	if (!modules || modules.length === 0) return false;
+  if (!modules || modules.length === 0) return false
 
-	const pathToCheck =
-		targetPath ??
-		(typeof window !== "undefined" ? window.location.pathname : "");
-	if (!pathToCheck) return false;
+  const pathToCheck =
+    targetPath ??
+    (typeof window !== 'undefined' ? window.location.pathname : '')
+  if (!pathToCheck) return false
 
-	const allRoutes = extractSidebarRoutesRecursively(modules);
-	return allRoutes.some((route) => arePathsEqual(route, pathToCheck));
+  const allRoutes = extractSidebarRoutesRecursively(modules)
+  return allRoutes.some((route) => arePathsEqual(route, pathToCheck))
 }

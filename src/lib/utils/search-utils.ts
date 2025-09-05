@@ -7,18 +7,18 @@
  * cleanEmptyParams({ a: 1, b: '', c: undefined, d: NaN }) // { a: 1 }
  */
 export function cleanEmptyParams<T extends Record<string, unknown>>(
-	search: T,
+  search: T,
 ): Partial<T> {
-	const newSearch = { ...search };
-	for (const key of Object.keys(newSearch)) {
-		const value = newSearch[key];
-		if (
-			value === undefined ||
-			value === "" ||
-			(typeof value === "number" && Number.isNaN(value))
-		)
-			delete newSearch[key];
-	}
+  const newSearch = { ...search }
+  for (const key of Object.keys(newSearch)) {
+    const value = newSearch[key]
+    if (
+      value === undefined ||
+      value === '' ||
+      (typeof value === 'number' && Number.isNaN(value))
+    )
+      delete newSearch[key]
+  }
 
-	return newSearch;
+  return newSearch
 }

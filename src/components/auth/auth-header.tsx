@@ -9,8 +9,8 @@ export function AuthHeader() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
             >
               Mi App
@@ -19,15 +19,15 @@ export function AuthHeader() {
 
           {/* Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
             >
               Inicio
             </Link>
             <SignedIn>
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
               >
                 Perfil
@@ -45,18 +45,16 @@ export function AuthHeader() {
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button size="sm">
-                    Registrarse
-                  </Button>
+                  <Button size="sm">Registrarse</Button>
                 </Link>
               </div>
             </SignedOut>
-            
+
             <SignedIn>
-              <UserButton 
+              <UserButton
                 appearance={{
                   elements: {
-                    avatarBox: "w-8 h-8",
+                    avatarBox: 'w-8 h-8',
                   },
                 }}
                 afterSignOutUrl="/"

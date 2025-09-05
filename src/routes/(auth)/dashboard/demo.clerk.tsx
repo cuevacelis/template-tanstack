@@ -1,7 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useUser, useAuth } from '@clerk/clerk-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
 export const Route = createFileRoute('/(auth)/dashboard/demo/clerk')({
@@ -118,9 +124,7 @@ function App() {
           <Card>
             <CardHeader>
               <CardTitle>📊 Información del Usuario</CardTitle>
-              <CardDescription>
-                Datos disponibles desde Clerk
-              </CardDescription>
+              <CardDescription>Datos disponibles desde Clerk</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-4">
@@ -132,14 +136,16 @@ function App() {
                     {user.id}
                   </p>
                 </div>
-                
+
                 <div>
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Nombre de Usuario:
                   </label>
                   <p className="text-sm">
                     {user.username || (
-                      <span className="text-gray-500 italic">No configurado</span>
+                      <span className="text-gray-500 italic">
+                        No configurado
+                      </span>
                     )}
                   </p>
                 </div>
@@ -150,7 +156,10 @@ function App() {
                   </label>
                   <div className="space-y-2">
                     {user.emailAddresses.map((email) => (
-                      <div key={email.id} className="flex items-center space-x-2">
+                      <div
+                        key={email.id}
+                        className="flex items-center space-x-2"
+                      >
                         <span className="text-sm">{email.emailAddress}</span>
                         {email.id === user.primaryEmailAddress?.id && (
                           <Badge variant="secondary" className="text-xs">
@@ -158,7 +167,10 @@ function App() {
                           </Badge>
                         )}
                         {email.verification?.status === 'verified' && (
-                          <Badge variant="outline" className="text-xs text-green-600">
+                          <Badge
+                            variant="outline"
+                            className="text-xs text-green-600"
+                          >
                             ✓ Verificado
                           </Badge>
                         )}
@@ -176,11 +188,11 @@ function App() {
                       {user.createdAt?.toLocaleDateString('es-ES', {
                         year: 'numeric',
                         month: 'long',
-                        day: 'numeric'
+                        day: 'numeric',
                       })}
                     </p>
                   </div>
-                  
+
                   <div>
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                       Última Actualización:
@@ -189,7 +201,7 @@ function App() {
                       {user.updatedAt?.toLocaleDateString('es-ES', {
                         year: 'numeric',
                         month: 'long',
-                        day: 'numeric'
+                        day: 'numeric',
                       })}
                     </p>
                   </div>
@@ -208,26 +220,35 @@ function App() {
             </CardHeader>
             <CardContent>
               <div className="grid gap-4 sm:grid-cols-2">
-                <Button onClick={handleGetToken} variant="outline" className="w-full">
+                <Button
+                  onClick={handleGetToken}
+                  variant="outline"
+                  className="w-full"
+                >
                   🔑 Obtener Token de Sesión
                 </Button>
-                <Button 
-                  onClick={handleSignOut} 
-                  variant="destructive" 
+                <Button
+                  onClick={handleSignOut}
+                  variant="destructive"
                   className="w-full"
                 >
                   🚪 Cerrar Sesión
                 </Button>
               </div>
-              
+
               <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <h4 className="font-medium text-blue-900 dark:text-blue-100 mb-2">
                   💡 Consejos:
                 </h4>
                 <ul className="text-sm text-blue-700 dark:text-blue-200 space-y-1">
-                  <li>• El token de sesión se imprime en la consola del navegador</li>
+                  <li>
+                    • El token de sesión se imprime en la consola del navegador
+                  </li>
                   <li>• Puedes usar este token para autenticar llamadas API</li>
-                  <li>• El UserButton en la esquina superior derecha te da más opciones</li>
+                  <li>
+                    • El UserButton en la esquina superior derecha te da más
+                    opciones
+                  </li>
                 </ul>
               </div>
             </CardContent>

@@ -1,25 +1,25 @@
 const CURRENCY_CONFIG = {
-	PEN: {
-		code: "PEN",
-		symbol: "S/",
-		locale: "es-PE",
-		name: "Soles Peruanos",
-	},
-	USD: {
-		code: "USD",
-		symbol: "US$",
-		locale: "en-US",
-		name: "Dólares Americanos",
-	},
-};
+  PEN: {
+    code: 'PEN',
+    symbol: 'S/',
+    locale: 'es-PE',
+    name: 'Soles Peruanos',
+  },
+  USD: {
+    code: 'USD',
+    symbol: 'US$',
+    locale: 'en-US',
+    name: 'Dólares Americanos',
+  },
+}
 
-export type Currency = keyof typeof CURRENCY_CONFIG;
+export type Currency = keyof typeof CURRENCY_CONFIG
 
 interface FormatCurrencyParams {
-	amount: number;
-	currency?: Currency;
-	withSymbol?: boolean;
-	customSymbol?: string;
+  amount: number
+  currency?: Currency
+  withSymbol?: boolean
+  customSymbol?: string
 }
 
 /**
@@ -31,33 +31,32 @@ interface FormatCurrencyParams {
  * formatCurrencyAmount({ amount: 100, currency: 'USD', withSymbol: false }) // '100.00'
  */
 export function formatCurrencyAmount({
-	amount,
-	currency = "PEN",
-	withSymbol = true,
-	customSymbol,
+  amount,
+  currency = 'PEN',
+  withSymbol = true,
+  customSymbol,
 }: FormatCurrencyParams): string {
-	// Asegurarnos de que tenemos una moneda válida
-	const validCurrency =
-		currency && CURRENCY_CONFIG[currency] ? currency : "PEN";
-	const config = CURRENCY_CONFIG[validCurrency];
+  // Asegurarnos de que tenemos una moneda válida
+  const validCurrency = currency && CURRENCY_CONFIG[currency] ? currency : 'PEN'
+  const config = CURRENCY_CONFIG[validCurrency]
 
-	const value = new Intl.NumberFormat(config.locale, {
-		style: "decimal",
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2,
-	}).format(amount);
+  const value = new Intl.NumberFormat(config.locale, {
+    style: 'decimal',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount)
 
-	if (!withSymbol) return value;
+  if (!withSymbol) return value
 
-	const symbol = customSymbol ?? config.symbol;
-	return `${symbol} ${value}`;
+  const symbol = customSymbol ?? config.symbol
+  return `${symbol} ${value}`
 }
 
 interface ConvertCurrencyParams {
-	amount: number;
-	from: Currency;
-	to: Currency;
-	rate: number;
+  amount: number
+  from: Currency
+  to: Currency
+  rate: number
 }
 
 /**
@@ -69,20 +68,20 @@ interface ConvertCurrencyParams {
  * convertCurrency({ amount: 100, from: 'PEN', to: 'USD', rate: 0.27 }) // 27
  */
 export function convertCurrency({
-	amount,
-	from,
-	to,
-	rate,
+  amount,
+  from,
+  to,
+  rate,
 }: ConvertCurrencyParams): number {
-	if (from === to) return amount;
-	return amount * rate;
+  if (from === to) return amount
+  return amount * rate
 }
 
 interface FormatAndConvertCurrencyParams {
-	amount: number;
-	from: Currency;
-	to: Currency;
-	rate: number;
+  amount: number
+  from: Currency
+  to: Currency
+  rate: number
 }
 
 /**
@@ -93,8 +92,8 @@ interface FormatAndConvertCurrencyParams {
  * formatAndConvertCurrency({ amount: 100, from: 'PEN', to: 'USD', rate: 0.27 }) // 'US$ 27.00'
  */
 export function formatAndConvertCurrency(
-	params: FormatAndConvertCurrencyParams,
+  params: FormatAndConvertCurrencyParams,
 ): string {
-	const convertedAmount = convertCurrency(params);
-	return formatCurrencyAmount({ amount: convertedAmount, currency: params.to });
+  const convertedAmount = convertCurrency(params)
+  return formatCurrencyAmount({ amount: convertedAmount, currency: params.to })
 }
